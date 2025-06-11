@@ -27,7 +27,7 @@ with the unique option to select cleaners based on language preferences to overc
 |-------------------|-------------------|----------------------------------------------------------------------------------|
 | Asmita Sharma     | Backend Developer | Develop server-side logic, manage database, create APIs, handle authentication. |
 | Juninho Chandra   | Frontend Developer| Design and implement user interfaces, ensure responsive and intuitive UI/UX.     |
-| Saung Hnin Phyu   | Project Manager & QA | Coordinate tasks, write documentation, perform testing, and manage deployment.  |
+| Saung Hnin Phyu   | Documenataion & QA | Coordinate tasks, write documentation, perform testing, and manage deployment.  |
 
 
 
