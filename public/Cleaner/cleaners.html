@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cleaner Finder</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .cleaner-card img {
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+    .rate {
+      color: green;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container py-5">
+  <h1 class="text-center mb-4" id="title">Find a Cleaner</h1>
+
+  <div class="row justify-content-center mb-4 g-2">
+    <div class="col-md-4">
+      <input type="text" id="searchInput" class="form-control" placeholder="Search by name or country..." oninput="filterCleaners()">
+    </div>
+    <div class="col-md-3">
+      <select class="form-select" id="languageFilter" onchange="filterCleaners()">
+        <option value="All">All Languages</option>
+        <option value="Mandarin">Mandarin</option>
+        <option value="Burmese">Burmese</option>
+        <option value="Tagalog">Tagalog</option>
+        <option value="Hindi">Hindi</option>
+        <option value="Nepali">Nepali</option>
+        <option value="Indonesian">Indonesian</option>
+        <option value="Thai">Thai</option>
+        <option value="Sinhala">Sinhala</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+      <button class="btn btn-secondary w-100" onclick="toggleLanguage()">🌐 中文/English</button>
+    </div>
+  </div>
+
+  <div class="row" id="cleanersContainer"></div>
+</div>
+
+<!-- Booking Modal -->
+<div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="bookingLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <form class="modal-content" id="bookingForm">
+      <div class="modal-header">
+        <h5 class="modal-title" id="bookingLabel">Book Cleaner</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="cleanerNameInput">
+        <div class="mb-3">
+          <label for="clientName" class="form-label">Your Name</label>
+          <input type="text" class="form-control" id="clientName" required>
+        </div>
+        <div class="mb-3">
+          <label for="dateTime" class="form-label">Preferred Date & Time</label>
+          <input type="datetime-local" class="form-control" id="dateTime" required>
+        </div>
+        <div class="mb-3">
+          <label for="service" class="form-label">Service</label>
+          <select class="form-select" id="service" required>
+            <option value="">Select a service</option>
+            <option value="Mopping">Mopping</option>
+            <option value="Vacuuming">Vacuuming</option>
+            <option value="Dusting">Dusting</option>
+            <option value="Deep Cleaning">Deep Cleaning</option>
+            <option value="Laundry">Laundry</option>
+            <option value="Ironing">Ironing</option>
+            <option value="Carpet Cleaning">Carpet Cleaning</option>
+            <option value="Window Cleaning">Window Cleaning</option>
+            <option value="Kitchen Cleaning">Kitchen Cleaning</option>
+            <option value="Bathroom Sanitization">Bathroom Sanitization</option>
+            <option value="General Cleaning">General Cleaning</option>
+            <option value="Organizing">Organizing</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="contact" class="form-label">Contact Info</label>
+          <input type="text" class="form-control" id="contact" required>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Confirm Booking</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  const cleaners = [
+    { id: 1, name: "Chen Li", languages: ["Mandarin", "English"], services: ["Mopping", "Vacuuming"], hourlyRate: 25, country: "China", description: "10+ years experience in residential cleaning.", image: "1.png" },
+    { id: 2, name: "Aung Moe", languages: ["Burmese", "English"], services: ["Dusting", "Deep Cleaning"], hourlyRate: 22, country: "Myanmar", description: "Skilled in deep cleaning techniques.", image: "2.png" },
+    { id: 3, name: "Maria Santos", languages: ["Tagalog", "English"], services: ["Laundry", "Ironing"], hourlyRate: 20, country: "Philippines", description: "Expert in fabric care and ironing.", image: "3.png" },
+    { id: 4, name: "Preeti Sethi", languages: ["Hindi", "English"], services: ["Carpet Cleaning", "Window Cleaning"], hourlyRate: 23, country: "India", description: "Specializes in tough stain removal.", image: "4.png" },
+    { id: 5, name: "Binod Karki", languages: ["Nepali", "English"], services: ["Kitchen Cleaning", "Bathroom Sanitization"], hourlyRate: 24, country: "Nepal", description: "Expert in hygiene and sanitization.", image: "5.png" },
+    { id: 6, name: "Andi Putra", languages: ["Indonesian", "English"], services: ["General Cleaning", "Organizing"], hourlyRate: 21, country: "Indonesia", description: "Focuses on efficient home organization.", image: "6.png" },
+    { id: 7, name: "Mai Davika Hoorne", languages: ["Thai", "English"], services: ["Kitchen Cleaning", "Bathroom Sanitization"], hourlyRate: 24, country: "Thailand", description: "Expert in hygiene and sanitization.", image: "7.png" },
+    { id: 8, name: "Yureni Noshika", languages: ["Sinhala", "English"], services: ["General Cleaning", "Organizing"], hourlyRate: 21, country: "Sri Lanka", description: "Focuses on efficient home organization.", image: "8.png" }
+  ];
+
+  let currentLang = "en";
+
+  function translate(text) {
+    const dict = {
+      "Languages": { zh: "语言", en: "Languages" },
+      "Services": { zh: "服务", en: "Services" },
+      "Find a Cleaner": { zh: "选择您的清洁工", en: "Find a Cleaner" },
+      "Search by name or country...": { zh: "按名字或国家搜索...", en: "Search by name or country..." }
+    };
+    return dict[text] ? dict[text][currentLang] : text;
+  }
+
+  function toggleLanguage() {
+    currentLang = currentLang === "en" ? "zh" : "en";
+    document.getElementById("title").textContent = translate("Find a Cleaner");
+    document.getElementById("searchInput").placeholder = translate("Search by name or country...");
+    filterCleaners();
+  }
+
+  function filterCleaners() {
+    const searchValue = document.getElementById("searchInput").value.toLowerCase();
+    const selectedLanguage = document.getElementById("languageFilter").value;
+
+    const filtered = cleaners.filter(c =>
+      (selectedLanguage === "All" || c.languages.includes(selectedLanguage)) &&
+      (c.name.toLowerCase().includes(searchValue) || c.country.toLowerCase().includes(searchValue))
+    );
+
+    renderCleaners(filtered);
+  }
+
+  function renderCleaners(cleanerList) {
+    const container = document.getElementById("cleanersContainer");
+    container.innerHTML = "";
+
+    cleanerList.forEach(cleaner => {
+      const col = document.createElement("div");
+      col.className = "col-md-6 col-lg-4 mb-4";
+      col.innerHTML = `
+        <div class="card h-100 shadow-sm cleaner-card">
+          <img src="${cleaner.image}" class="card-img-top" alt="${cleaner.name}">
+          <div class="card-body">
+            <h5 class="card-title">${cleaner.name} (${cleaner.country})</h5>
+            <p><strong>${translate("Languages")}:</strong> ${cleaner.languages.join(", ")}</p>
+            <p><strong>${translate("Services")}:</strong> ${cleaner.services.join(", ")}</p>
+            <p class="rate">$${cleaner.hourlyRate}/hr</p>
+            <p class="card-text">${cleaner.description}</p>
+            <button class="btn btn-success w-100" onclick="openBookingModal('${cleaner.name}')">Book Now</button>
+          </div>
+        </div>
+      `;
+      container.appendChild(col);
+    });
+  }
+
+  function openBookingModal(cleanerName) {
+    document.getElementById("cleanerNameInput").value = cleanerName;
+    document.getElementById("bookingLabel").innerText = "Book " + cleanerName;
+    document.getElementById("bookingForm").reset();
+    const modal = new bootstrap.Modal(document.getElementById('bookingModal'));
+    modal.show();
+  }
+
+  document.getElementById("bookingForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    const cleanerName = document.getElementById("cleanerNameInput").value;
+    const clientName = document.getElementById("clientName").value;
+    const dateTime = document.getElementById("dateTime").value;
+    const service = document.getElementById("service").value;
+    const contact = document.getElementById("contact").value;
+
+    alert(`Booking Confirmed!\nCleaner: ${cleanerName}\nName: ${clientName}\nDate: ${dateTime}\nService: ${service}\nContact: ${contact}`);
+    bootstrap.Modal.getInstance(document.getElementById('bookingModal')).hide();
+  });
+
+  // Initial render
+  renderCleaners(cleaners);
+</script>
+</body>
+</html>
