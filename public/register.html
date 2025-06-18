@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>User Portal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/Registration/registration.css" />
+  <style>
+    body {
+      background-image: url('/Registration/background.gif');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-attachment: fixed;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 40px;
+      padding: 50px;
+      flex-wrap: wrap;
+    }
+
+    .registration, .login {
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 30px;
+      border-radius: 10px;
+      width: 380px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin: 6px 0 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    input[type="submit"] {
+      background-color: #007bff;
+      color: white;
+      cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container-wrapper">
+    <!-- Registration Form -->
+    <div class="registration">
+      <h2>Register</h2>
+
+      <form method="post" action="/register">
+        <label>Full Name:</label><br>
+        <input type="text" name="user_name" placeholder="Name.." required><br>
+
+        <label>Email:</label><br>
+        <input type="email" name="email" placeholder="Email Address.." required><br>
+
+        <label>Date of Birth:</label><br>
+        <input type="date" name="dob" required><br><br>
+
+        <label>Area (Singapore):</label><br>
+        <select name="area" required>
+          <option value="" disabled selected>--Select Area--</option>
+          <option value="Hougang">Hougang</option>
+          <option value="Serangoon">Serangoon</option>
+          <option value="Ang Mo Kio">Ang Mo Kio</option>
+          <option value="Bedok">Bedok</option>
+          <option value="Bishan">Bishan</option>
+          <option value="Bukit Batok">Bukit Batok</option>
+          <option value="Clementi">Clementi</option>
+          <option value="Jurong East">Jurong East</option>
+          <option value="Pasir Ris">Pasir Ris</option>
+          <option value="Woodlands">Woodlands</option>
+        </select><br>
+
+        <label>Phone Number:</label><br>
+        <input type="tel" name="phone" placeholder="Enter Phone Number.."><br>
+
+        <label>Password:</label><br>
+        <input type="password" name="password" placeholder="Password" required><br>
+
+        <label>Confirm Password:</label><br>
+        <input type="password" name="confirm_password" placeholder="Confirm Password" required><br>
+
+        <label style="display: flex; align-items: center; gap: 8px;">
+        <input type="checkbox" required>
+         I agree to Terms & Conditions
+</label><br><br>
+
+        <input type="submit" value="REGISTER">
+      </form>
+    </div>
+
+    <!-- Login Form -->
+
+    
+    <div class="login">
+      <h2>Login</h2>
+      <form id="login">
+        <label>Email:</label><br>
+        <input type="email" name="login_email" placeholder="Email Address.." required><br>
+
+        <label>Password:</label><br>
+        <input type="password" name="login_password" placeholder="Password" required><br>
+
+        <input type="submit" value="LOGIN">
+      </form>
+    </div>
+  </div>
+<script>
+document.querySelector('#login').addEventListener('submit', async (event) => {
+  event.preventDefault(); // Prevent default form submission
+
+  const formData = new FormData(event.target);
+  const login_email = formData.get('login_email');
+  const login_password = formData.get('login_password');
+
+  try {
+    const response = await fetch('/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ login_email, login_password })
+    });
+
+    const data = await response.json();
+
+    if (response.ok && data.redirect) {
+      localStorage.setItem('userData', JSON.stringify(data.user)); // Store user data
+      //alert(data.user.name);
+      window.location.href = data.redirect; // Redirect to dashboard
+    } else {
+      alert(data.error || 'Login failed.'); // Handle errors
+    }
+  } catch (error) {
+    console.error('Error:', error);
+    alert('An error occurred while logging in.');
+  }
+});
+</script>
+</body>
+</html>
