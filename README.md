@@ -23,11 +23,12 @@ with the unique option to select cleaners based on language preferences to overc
 
 ### 👥 Team Roles
 
-| Name              | Role              | Responsibilities                                                                 |
-|-------------------|-------------------|----------------------------------------------------------------------------------|
-| Asmita Sharma     | Backend Developer | Develop server-side logic, manage database, create APIs, handle authentication. |
-| Juninho Chandra   | Frontend Developer| Design and implement user interfaces, ensure responsive and intuitive UI/UX.     |
-| Saung Hnin Phyu   | Documenataion & QA | Coordinate tasks, write documentation, perform testing, and manage deployment.  |
+| Name              | Role               | Responsibilities                                                                 |
+|-------------------|------------------- |----------------------------------------------------------------------------------|
+| Asmita Sharma     | Project Manager    | Develop server-side logic, manage database, create APIs, handle authentication.  |
+| Juninho Chandra   | Frontend Developer | Design and implement user interfaces, ensure responsive and intuitive UI/UX.     |
+| Saung Hnin Phyu   | Documenataion & QA | Coordinate tasks, write documentation, perform testing, and manage deployment.   |
+| Daniel            | Developer          | UI and interface                                                                 |
 
 
 
