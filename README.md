@@ -42,56 +42,63 @@ with the unique option to select cleaners based on language preferences to overc
 ### Initial Backlog Ideas
 See [initial_backlog_ideas.md](./initial_backlog_ideas.md)  
 
-## 4. Database Usage (JSON)
-All data is stored using **Node.js and JSON files**, simulating a 
-simple backend.
+## 4. Database Initialization
+This project uses SQLite to store all data .
 
-### 📁 JSON Files & Their Purpose
+## Tables Created##
+*users* — stores customer details
 
-#### 1. `users.json`
-Stores customer information.
-{
-  "id": 1,
-  "name": "Alicia Wong",
-  "email": "alicia@example.com",
-  "passwordHash": "hashed_pw_here",
-  "dob": "2000-08-15",
-  "area": "Serangoon",
-  "phone": "91234567",
-}
+*cleaners* — stores cleaner profiles and their services
 
-#### 2. cleaners.json
-{
-  "id": 1,
-  "name": "Chen Li",
-  "languages": ["Mandarin", "English"],
-  "services": ["mopping", "vacuuming"],
-  "hourlyRate": 25.0,
-  "description": "10+ years experience in residential cleaning."
-}
+*bookings* — stores booking information for customers and cleaners
 
-#### 3.bookings.json
-{
-  "id": 1,
-  "customerId": 1,
-  "cleanerId": 1,
-  "date": "2025-06-15",
-  "startTime": "09:00",
-  "endTime": "11:00",
-  "amount": 50.0,
-  "status": "confirmed" // pending | confirmed | completed | cancelled
-}
+*payments* — stores payment transactions linked to bookings
 
-#### 4.payments.json
-{
-  "id": 1,
-  "bookingId": 1,
-  "amount": 50.0,
-  "paymentMethod": "credit_card",
-  "transactionDate": "2025-06-14T12:00:00Z",
-  "status": "success"
-}
+-- Users Table
+CREATE TABLE IF NOT EXISTS users (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT,
+  email TEXT UNIQUE,
+  passwordHash TEXT,
+  dob TEXT,
+  area TEXT,
+  phone TEXT
+);
 
+-- Cleaners Table
+CREATE TABLE IF NOT EXISTS cleaners (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT,
+  languages TEXT,    -- comma-separated values, e.g. "Mandarin, English"
+  services TEXT,     -- comma-separated values, e.g. "mopping, vacuuming"
+  hourlyRate REAL,
+  description TEXT
+);
+
+-- Bookings Table
+CREATE TABLE IF NOT EXISTS bookings (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  customerId INTEGER,
+  cleanerId INTEGER,
+  date TEXT,           -- format YYYY-MM-DD
+  startTime TEXT,      -- format HH:MM
+  endTime TEXT,        -- format HH:MM
+  amount REAL,
+  status TEXT,         -- e.g. pending, confirmed, completed, cancelled
+  FOREIGN KEY (customerId) REFERENCES users(id),
+  FOREIGN KEY (cleanerId) REFERENCES cleaners(id)
+);
+
+-- Payments Table
+CREATE TABLE IF NOT EXISTS payments (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  bookingId INTEGER,
+  amount REAL,
+  paymentMethod TEXT,       -- e.g. credit_card
+  transactionDate TEXT,     -- ISO 8601 format, e.g. 2025-06-14T12:00:00Z
+  status TEXT,              -- e.g. success, failed
+  FOREIGN KEY (bookingId) REFERENCES bookings(id)
+);
 
 ------------------------------------------------------------------------
 
