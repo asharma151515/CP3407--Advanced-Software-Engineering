@@ -4,196 +4,311 @@
   <meta charset="UTF-8" />
   <title>User Portal</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="/Registration/registration.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
   <style>
-    body {
-      background-image: url('/Registration/background.gif');
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center;
-      background-attachment: fixed;
-      font-family: Arial, sans-serif;
+    * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
-    .container-wrapper {
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+        url('/Registration/background.gif') no-repeat center center fixed;
+      background-size: cover;
       display: flex;
       justify-content: center;
-      align-items: flex-start;
-      gap: 40px;
-      padding: 50px;
+      align-items: center;
+      min-height: 100vh;
+      padding: 2rem;
+    }
+
+
+
+    .container-wrapper {
+      display: flex;
       flex-wrap: wrap;
+      gap: 40px;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(12px);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
     }
 
     .registration, .login {
-      background-color: rgba(255, 255, 255, 0.9);
+      background: white;
       padding: 30px;
-      border-radius: 10px;
-      width: 380px;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+      border-radius: 16px;
+      width: 360px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     }
 
     h2 {
       text-align: center;
+      margin-bottom: 24px;
+      color: #2c3e50;
+    }
+
+    label {
+      font-weight: 600;
+      margin-top: 12px;
+      display: block;
+      color: #555;
+    }
+
+    .input-group {
+      position: relative;
       margin-bottom: 20px;
     }
 
-    input, select {
+    .input-group input, .input-group select {
       width: 100%;
-      padding: 10px;
-      margin: 6px 0 15px;
+      padding: 12px 40px 12px 40px;
       border: 1px solid #ccc;
-      border-radius: 4px;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    .input-group i {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #888;
+    }
+
+    .toggle-password {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: #888;
     }
 
     input[type="submit"] {
-      background-color: #007bff;
+      background: linear-gradient(to right, #007bff, #0056b3);
       color: white;
+      font-weight: 600;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      width: 100%;
+      font-size: 1rem;
       cursor: pointer;
+      transition: background 0.3s ease;
     }
 
     input[type="submit"]:hover {
-      background-color: #0056b3;
-    }
-    #message {
-      text-align: center;
-      font-size: 1.25rem;
-      font-weight: bold;
-      padding: 1rem;
-      margin: 1rem auto;
-      max-width: 500px;
-      border-radius: 8px;
-      background-color: rgba(255, 255, 255, 0.8);
+      background: linear-gradient(to right, #0056b3, #003f80);
     }
 
-    #message.error {
-      color: #b30000;
-      border: 1px solid #b30000;
+    label.checkbox-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 10px;
+      font-size: 0.9rem;
     }
 
-    #message.success {
-      color: #007a3d;
-      border: 1px solid #007a3d;
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #ffffffdd;
+      color: #333;
+      padding: 15px 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+      font-weight: 500;
+      display: none;
+      z-index: 9999;
+      animation: slideDown 0.5s ease-out;
+    }
+
+    .toast.error {
+      border-left: 5px solid #e74c3c;
+    }
+
+    .toast.success {
+      border-left: 5px solid #2ecc71;
+    }
+
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+      .container-wrapper {
+        flex-direction: column;
+        padding: 20px;
+      }
+
+      .registration, .login {
+        width: 100%;
+      }
     }
   </style>
 </head>
 <body>
-<div id="message" ></div>
+
+   <h1 style="
+       text-align: center;
+       font-size: 2.5rem;
+       color: white;
+       text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+       margin-bottom: 30px;
+    ">
+     🧽 Welcome to ScrubHub – Your Trusted Home Cleaning Partner!
+    </h1>
+
+
+  <div class="toast" id="toast"></div>
+
   <div class="container-wrapper">
 
     <!-- Registration Form -->
     <div class="registration">
-      <h2>Register</h2>
-
+      <h2>Create Account</h2>
       <form method="post" action="/register">
-        <label>Full Name:</label><br>
-        <input type="text" name="user_name" placeholder="Name.." required><br>
+        <div class="input-group">
+          <i class="fa fa-user"></i>
+          <input type="text" name="user_name" placeholder="Full Name" required>
+        </div>
 
-        <label>Email:</label><br>
-        <input type="email" name="email" placeholder="Email Address.." required><br>
+        <div class="input-group">
+          <i class="fa fa-envelope"></i>
+          <input type="email" name="email" placeholder="Email" required>
+        </div>
 
-        <label>Date of Birth:</label><br>
-        <input type="date" name="dob" required><br><br>
+        <div class="input-group">
+          <input type="date" name="dob" required>
+        </div>
 
-        <label>Area (Singapore):</label><br>
-        <select name="area" required>
-          <option value="" disabled selected>--Select Area--</option>
-          <option value="Hougang">Hougang</option>
-          <option value="Serangoon">Serangoon</option>
-          <option value="Ang Mo Kio">Ang Mo Kio</option>
-          <option value="Bedok">Bedok</option>
-          <option value="Bishan">Bishan</option>
-          <option value="Bukit Batok">Bukit Batok</option>
-          <option value="Clementi">Clementi</option>
-          <option value="Jurong East">Jurong East</option>
-          <option value="Pasir Ris">Pasir Ris</option>
-          <option value="Woodlands">Woodlands</option>
-        </select><br>
+        <div class="input-group">
+          <select name="area" required>
+            <option value="" disabled selected>--Select Area--</option>
+            <option>Hougang</option><option>Serangoon</option><option>Ang Mo Kio</option>
+            <option>Bedok</option><option>Bishan</option><option>Bukit Batok</option>
+            <option>Clementi</option><option>Jurong East</option><option>Pasir Ris</option><option>Woodlands</option>
+          </select>
+        </div>
 
-        <label>Phone Number:</label><br>
-        <input type="tel" name="phone" placeholder="Enter Phone Number.."><br>
+        <div class="input-group">
+          <i class="fa fa-phone"></i>
+          <input type="tel" name="phone" placeholder="Phone Number">
+        </div>
 
-        <label>Password:</label><br>
-        <input type="password" name="password" placeholder="Password" required><br>
+        <div class="input-group">
+          <i class="fa fa-lock"></i>
+          <input type="password" name="password" placeholder="Password" required>
+          <i class="fa fa-eye toggle-password"></i>
+        </div>
 
-        <label>Confirm Password:</label><br>
-        <input type="password" name="confirm_password" placeholder="Confirm Password" required><br>
+        <div class="input-group">
+          <i class="fa fa-lock"></i>
+          <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+          <i class="fa fa-eye toggle-password"></i>
+        </div>
 
-        <label style="display: flex; align-items: center; gap: 8px;">
-        <input type="checkbox" required>
-         I agree to Terms & Conditions
-</label><br><br>
+        <label class="checkbox-label">
+          <input type="checkbox" required>
+          I agree to the Terms & Conditions
+        </label>
 
         <input type="submit" value="REGISTER">
       </form>
     </div>
 
     <!-- Login Form -->
-
-    
     <div class="login">
       <h2>Login</h2>
       <form id="login">
-        <label>Email:</label><br>
-        <input type="email" name="login_email" placeholder="Email Address.." required><br>
+        <div class="input-group">
+          <i class="fa fa-envelope"></i>
+          <input type="email" name="login_email" placeholder="Email" required>
+        </div>
 
-        <label>Password:</label><br>
-        <input type="password" name="login_password" placeholder="Password" required><br>
+        <div class="input-group">
+          <i class="fa fa-lock"></i>
+          <input type="password" name="login_password" placeholder="Password" required>
+          <i class="fa fa-eye toggle-password"></i>
+        </div>
 
         <input type="submit" value="LOGIN">
       </form>
     </div>
   </div>
 
-  
+  <script>
+    // Show toast notification
+    function showToast(message, type = 'success') {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.className = `toast ${type}`;
+      toast.style.display = 'block';
 
-<script>
-   
-    // Get error or success message from the URL
+      setTimeout(() => {
+        toast.style.display = 'none';
+      }, 3500);
+    }
+
+    // Check for success/error in URL
     const params = new URLSearchParams(window.location.search);
-    const error = params.get('error');
-    const success = params.get('success');
-
-    const messageDiv = document.getElementById('message');
-    if (error) {
-      messageDiv.textContent = decodeURIComponent(error);
-      messageDiv.className = 'error';
+    if (params.get('error')) {
+      showToast(decodeURIComponent(params.get('error')), 'error');
     }
-    if (success) {
-      messageDiv.textContent = decodeURIComponent(success);
-      messageDiv.className = 'success';
+    if (params.get('success')) {
+      showToast(decodeURIComponent(params.get('success')), 'success');
     }
-document.querySelector('#login').addEventListener('submit', async (event) => {
-  event.preventDefault(); // Prevent default form submission
 
-  const formData = new FormData(event.target);
-  const login_email = formData.get('login_email');
-  const login_password = formData.get('login_password');
-
-  try {
-    const response = await fetch('/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ login_email, login_password })
+    // Password toggle
+    document.querySelectorAll('.toggle-password').forEach(icon => {
+      icon.addEventListener('click', () => {
+        const input = icon.previousElementSibling;
+        if (input.type === 'password') {
+          input.type = 'text';
+          icon.classList.replace('fa-eye', 'fa-eye-slash');
+        } else {
+          input.type = 'password';
+          icon.classList.replace('fa-eye-slash', 'fa-eye');
+        }
+      });
     });
 
-    const data = await response.json();
+    // Login form submission
+    document.querySelector('#login').addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const formData = new FormData(event.target);
+      const login_email = formData.get('login_email');
+      const login_password = formData.get('login_password');
 
-    if (response.ok && data.redirect) {
-      localStorage.setItem('userData', JSON.stringify(data.user)); // Store user data
-      //alert(data.user.name);
-      window.location.href = data.redirect; // Redirect to dashboard
-    } else {
-      alert(data.error || 'Login failed.'); // Handle errors
-    }
-  } catch (error) {
-    console.error('Error:', error);
-    alert('An error occurred while logging in.');
-  }
-});
-</script>
+      try {
+        const response = await fetch('/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ login_email, login_password })
+        });
+
+        const data = await response.json();
+        if (response.ok && data.redirect) {
+          localStorage.setItem('userData', JSON.stringify(data.user));
+          window.location.href = data.redirect;
+        } else {
+          showToast(data.error || 'Login failed.', 'error');
+        }
+      } catch (err) {
+        console.error(err);
+        showToast('An error occurred while logging in.', 'error');
+      }
+    });
+  </script>
 </body>
 </html>
