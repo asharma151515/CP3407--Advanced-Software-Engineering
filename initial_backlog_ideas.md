@@ -1,53 +1,45 @@
-User Story 1:
-Title: User Registration
-Description: As a new customer, I want to register an account using my email and password so that I can book cleaning services securely.
-Priority: High
-Effort Estimate: 2 days
+✅ Broken Down User Stories with Tasks
+1. User Registration (3 days)
+Design registration form UI (email, password) — 0.5 days
 
-User Story 2:
-Title: User Login
-Description: As a returning customer, I want to log in with my credentials so that I can access my dashboard and manage bookings.
-Priority: High
-Effort Estimate: 2 days
+Implement form validation (email format, password rules) — 0.5 days
 
-User Story 3:
-Title: View Cleaning Services
-Description: As a customer, I want to browse available cleaning services so I can choose what suits my needs.
-Priority: Medium
-Effort Estimate: 1.5 days
+Backend API for user signup (create user in DB) — 1 day
 
-User Story 4:
-Title: Book a Cleaning Appointment
-Description: As a customer, I want to book a cleaning service by selecting date and time so that I can schedule it at my convenience.
-Priority: High
-Effort Estimate: 3 days
+Send confirmation email (optional for later) — 0.5 days
 
-User Story 5:
-Title: Real-Time Booking Confirmation
-Description: As a customer, I want to see a real-time confirmation after I book a service so I know it has been accepted.
-Priority: Medium
-Effort Estimate: 1.5 days
+Test registration flow (unit + integration) — 0.5 days
 
-User Story 6:
-Title: View Booking History
-Description: As a customer, I want to view my previous bookings so that I can track or repeat them.
-Priority: Medium
-Effort Estimate: 1.5 days
+2. User Login (2 days)
+Design login form UI (email, password) — 0.5 days
 
-User Story 7:
-Title: Eco-Friendly Badge Display
-Description: As a customer, I want to see which services are eco-friendly so I can make environmentally responsible choices.
-Priority: Low
-Effort Estimate: 1 day
+Implement authentication backend (verify credentials) — 0.75 days
 
-**********************************************************************************************************************************************************************************
-💡 MYcleaner – Iteration 1 User Stories and Planning
-| User Story             | Priority | Estimation (Days) | Description                                      | Note                             |
-|------------------------|----------|--------------------|--------------------------------------------------|----------------------------------|
-| User Registration      | High     | 3                  | Users sign up with email & password              | Essential for new users          |
-| User Login             | High     | 2                  | Users log in with existing credentials           | Core feature                     |
-| View Services          | High     | 3                  | Show available cleaning options with filters     | Enables users to browse          |
-| Book Appointment       | High     | 4                  | Select date/time and book a service              | Core booking functionality       |
-| Real-Time Confirmation | High     | 2                  | Show instant booking status                      | Keeps users informed             |
+Manage session or JWT token for logged-in user — 0.5 days
 
+Test login and session management — 0.25 days
 
+3. View Services (3 days)
+Design services listing UI with filters (category, price) — 1 day
+
+Backend API to fetch services with filters — 1 day
+
+Connect frontend filters with API (dynamic filtering) — 0.5 days
+
+Test service browsing and filtering — 0.5 days
+
+4. Book Appointment (4 days)
+Design booking form UI (date/time picker) — 1 day
+
+Backend API to create bookings and validate availability — 1.5 days
+
+Implement booking confirmation and error handling — 0.75 days
+
+Test booking functionality end-to-end — 0.75 days
+
+5. Real-Time Confirmation (2 days)
+Implement real-time booking status update (e.g., via WebSocket or polling) — 1 day
+
+Design UI for showing booking status dynamically — 0.5 days
+
+Test real-time confirmation updates — 0.5 days
