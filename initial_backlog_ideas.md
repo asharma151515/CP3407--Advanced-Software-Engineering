@@ -1,46 +1,55 @@
-User Story 1:
-Title: User Registration
-Description: As a new customer, I want to register an account using my email and password so that I can book cleaning services securely.
-Priority: High
-Effort Estimate: 2 days
+# 🚀 Iteration 1 – User Stories Breakdown (`MyCleaner- *SCRUBHUB*`)
 
-User Story 2:
-Title: User Login
-Description: As a returning customer, I want to log in with my credentials so that I can access my dashboard and manage bookings.
-Priority: High
-Effort Estimate: 2 days
+## 📦 Total Estimated Time: **14 Days**
 
-User Story 3:
-Title: View Cleaning Services
-Description: As a customer, I want to browse available cleaning services so I can choose what suits my needs.
-Priority: Medium
-Effort Estimate: 1.5 days
+----------------------------------------------
 
-User Story 4:
-Title: Book a Cleaning Appointment
-Description: As a customer, I want to book a cleaning service by selecting date and time so that I can schedule it at my convenience.
-Priority: High
-Effort Estimate: 3 days
+## ✅ 1. User Registration *(3 days)*
 
-User Story 5:
-Title: Real-Time Booking Confirmation
-Description: As a customer, I want to see a real-time confirmation after I book a service so I know it has been accepted.
-Priority: Medium
-Effort Estimate: 1.5 days
+- [ ] 🎨 **UI**: Design registration form (email, password) – *0.5 day*
+- [ ] ✅ **Validation**: Email format & password rules – *0.5 day*
+- [ ] 🔧 **Backend**: API to create user in DB – *1 day*
+- [ ] 📧 **(Optional)**: Send confirmation email – *0.5 day*
+- [ ] 🧪 **Testing**: Unit & integration tests – *0.5 day*
 
-User Story 6:
-Title: View Booking History
-Description: As a customer, I want to view my previous bookings so that I can track or repeat them.
-Priority: Medium
-Effort Estimate: 1.5 days
+---
 
-User Story 7:
-Title: Eco-Friendly Badge Display
-Description: As a customer, I want to see which services are eco-friendly so I can make environmentally responsible choices.
-Priority: Low
-Effort Estimate: 1 day
+## ✅ 2. User Login *(2 days)*
 
-**********************************************************************************************************************************************************************************
+- [ ] 🎨 **UI**: Login form design – *0.5 day*
+- [ ] 🔐 **Backend**: Verify credentials – *0.75 day*
+- [ ] 🛡️ **Session**: Manage JWT or session – *0.5 day*
+- [ ] 🧪 **Testing**: Session + login flow – *0.25 day*
+
+---
+
+## ✅ 3. View Services *(3 days)*
+
+- [ ] 🎨 **UI**: Service list + filter options – *1 day*
+- [ ] 🔧 **Backend**: API for services with filters – *1 day*
+- [ ] 🔗 **Integration**: Connect UI filters to API – *0.5 day*
+- [ ] 🧪 **Testing**: Filtering and UI testing – *0.5 day*
+
+---
+
+## ✅ 4. Book Appointment *(4 days)*
+
+- [ ] 🎨 **UI**: Booking form with date/time – *1 day*
+- [ ] 🔧 **Backend**: Create booking, check availability – *1.5 day*
+- [ ] 🧩 **Logic**: Booking confirmation & error handling – *0.75 day*
+- [ ] 🧪 **Testing**: End-to-end booking flow – *0.75 day*
+
+---
+
+## ✅ 5. Real-Time Confirmation *(2 days)*
+
+- [ ] 🔁 **Realtime**: WebSocket or polling for booking updates – *1 day*
+- [ ] 🎨 **UI**: Show live status – *0.5 day*
+- [ ] 🧪 **Testing**: Real-time status testing – *0.5 day*
+
+---
+
+****************************************************************************************************************************************************************************************************************************************************************************
 💡 MYcleaner – Iteration 1 User Stories and Planning
 | User Story             | Priority | Estimation (Days) | Description                                      | Note                             |
 |------------------------|----------|--------------------|--------------------------------------------------|----------------------------------|
