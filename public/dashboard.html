@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Dashboard - MyClean</title>
+  <title>Dashboard - ScrubHub</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -51,49 +51,16 @@
     .card.green { background-color: #2ecc71; color: white; }
     .card.red { background-color: #e74c3c; color: white; }
     .card.gray { background-color: #bdc3c7; color: white; }
+
+      .booking-card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 15px;
+    background-color: #f9f9f9;
+  }
   </style>
-<script>
-  document.addEventListener('DOMContentLoaded', async function() {
-    var userData = localStorage.getItem('userData');
-    if (!userData) {
-      window.location.href = '/login';
-      return;
-    }
 
-    var user = JSON.parse(userData);
-    document.getElementById('welcome-user').textContent = 'Welcome, ' + user.name + '!';
-
-    try {
-      const response = await fetch(`/api/user/${user.id}/dashboard`);
-      if (!response.ok) throw new Error('Failed to fetch bookings.');
-
-      const data = await response.json();
-      const bookings = data.bookings;
-      const container = document.getElementById('bookingList');
-
-      if (bookings.length === 0) {
-        container.innerHTML = '<p>No upcoming bookings.</p>';
-        return;
-      }
-
-      container.innerHTML = ''; // Clear loading text
-
-      bookings.forEach(b => {
-        const p = document.createElement('p');
-        const date = new Date(`${b.date}T${b.startTime || '00:00'}`);
-        const formattedDate = date.toLocaleString('en-US', {
-          weekday: 'long', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit'
-        });
-
-       p.innerHTML = `🧽 ${formattedDate} with Cleaner ID ${b.cleanerId} — Status: ${b.status}`;
-        container.appendChild(p);
-      });
-    } catch (err) {
-      console.error('Error loading bookings:', err);
-      document.getElementById('bookingList').innerHTML = '<p class="text-danger">Error loading bookings.</p>';
-    }
-  });
-</script>
 
 </head>
 <body>
@@ -103,7 +70,7 @@
     <a href="/cleaners">Book Cleaner</a>
     <a href="#">Your Bookings</a>
     <a href="#">Message Cleaner</a>
-    <button id="logoutButton">Logout</button>
+    <a href="#" id="logoutButton">Logout</a>
   </div>
 <script>
 function logout() {
@@ -118,23 +85,28 @@ document.getElementById('logoutButton').addEventListener('click', logout);
   <div class="main-content">
     <h1 id="welcome-user">Welcome, Customer!</h1>
 
-    <div class="stats">
-      <div class="card green">
-        <h3>3</h3>
-        <p>Bookings This Month</p>
-      </div>
-      <div class="card red">
-        <h3>0</h3>
-        <p>Messages Pending</p>
-      </div>
-      <div class="card gray">
-        <h3>1</h3>
-        <p>Upcoming Booking</p>
-      </div>
-    </div>
+   <div class="stats">
+  <div class="card green">
+    <h3 id="monthlyCount">0</h3>
+    <p>Bookings This Month</p>
+  </div>
+  <div class="card red">
+    <h3 id="pendingMessages">0</h3>
+    <p>Messages Pending</p>
+  </div>
+  <div class="card gray">
+    <h3 id="upcomingCount">0</h3>
+    <p>Upcoming Booking</p>
+  </div>
+</div>
+
+
+<div id="bookingList" class="container mt-4"></div>
+
+
 
     <div class="section">
-      <h2>Upcoming Bookings</h2>
+
       <div id="bookingList>
          <p>Loading booking....</p>
       </div>
@@ -148,5 +120,85 @@ document.getElementById('logoutButton').addEventListener('click', logout);
       </form>
     </div>
   </div>
+<script>
+  document.addEventListener('DOMContentLoaded', async () => {
+    const bookingListContainer = document.getElementById("bookingList");
+
+    try {
+      const response = await fetch('/api/user/dashboard');
+
+      if (!response.ok) {
+        if (response.status === 401) {
+          bookingListContainer.innerHTML = "<p>Please log in to view your bookings.</p>";
+        } else {
+          bookingListContainer.innerHTML = "<p>Failed to load bookings.</p>";
+        }
+        return;
+      }
+
+      const bookings = await response.json();
+
+      if (!Array.isArray(bookings) || bookings.length === 0) {
+        bookingListContainer.innerHTML = "<p>No bookings found.</p>";
+        return;
+      }
+
+      // Render each booking
+      bookings.forEach(b => {
+  const p = document.createElement('p');
+  const date = new Date(`${b.date}T${b.startTime || '00:00'}`);
+  const formattedDate = date.toLocaleString('en-US', {
+    weekday: 'short',
+    month: 'short',
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: true
+  });
+
+  p.textContent = `🧽 ${formattedDate} with ${b.cleanerName} — Status: ${b.status}`;
+  bookingListContainer.appendChild(p);
+});
+
+// Get references
+const monthlyCountEl = document.getElementById("monthlyCount");
+const upcomingCountEl = document.getElementById("upcomingCount");
+const pendingMessagesEl = document.getElementById("pendingMessages"); // Placeholder
+
+const now = new Date();
+const currentMonth = now.getMonth();
+const currentYear = now.getFullYear();
+
+// Count bookings this month
+const bookingsThisMonth = bookings.filter(b => {
+  const bookingDate = new Date(`${b.date}T${b.startTime || '00:00'}`);
+  return bookingDate.getMonth() === currentMonth && bookingDate.getFullYear() === currentYear;
+});
+
+// Find upcoming bookings (date/time is after now)
+const upcomingBookings = bookings.filter(b => {
+  const bookingDate = new Date(`${b.date}T${b.startTime || '00:00'}`);
+  return bookingDate > now;
+});
+
+// Update stats
+monthlyCountEl.textContent = bookingsThisMonth.length;
+upcomingCountEl.textContent = upcomingBookings.length;
+pendingMessagesEl.textContent = 0; // If you plan to support messaging later
+
+
+
+    } catch (error) {
+      console.error("Error fetching bookings:", error);
+      bookingListContainer.innerHTML = "<p>Something went wrong. Please try again later.</p>";
+    }
+
+
+
+  });
+</script>
+
+
 </body>
+
 </html>
