@@ -1,45 +1,61 @@
-✅ Broken Down User Stories with Tasks
-1. User Registration (3 days)
-Design registration form UI (email, password) — 0.5 days
+# 🚀 Iteration 1 – User Stories Breakdown (`MyCleaner- *SCRUBHUB*`)
 
-Implement form validation (email format, password rules) — 0.5 days
+## 📦 Total Estimated Time: **14 Days**
 
-Backend API for user signup (create user in DB) — 1 day
+----------------------------------------------
 
-Send confirmation email (optional for later) — 0.5 days
+## ✅ 1. User Registration *(3 days)*
 
-Test registration flow (unit + integration) — 0.5 days
+- [ ] 🎨 **UI**: Design registration form (email, password) – *0.5 day*
+- [ ] ✅ **Validation**: Email format & password rules – *0.5 day*
+- [ ] 🔧 **Backend**: API to create user in DB – *1 day*
+- [ ] 📧 **(Optional)**: Send confirmation email – *0.5 day*
+- [ ] 🧪 **Testing**: Unit & integration tests – *0.5 day*
 
-2. User Login (2 days)
-Design login form UI (email, password) — 0.5 days
+---
 
-Implement authentication backend (verify credentials) — 0.75 days
+## ✅ 2. User Login *(2 days)*
 
-Manage session or JWT token for logged-in user — 0.5 days
+- [ ] 🎨 **UI**: Login form design – *0.5 day*
+- [ ] 🔐 **Backend**: Verify credentials – *0.75 day*
+- [ ] 🛡️ **Session**: Manage JWT or session – *0.5 day*
+- [ ] 🧪 **Testing**: Session + login flow – *0.25 day*
 
-Test login and session management — 0.25 days
+---
 
-3. View Services (3 days)
-Design services listing UI with filters (category, price) — 1 day
+## ✅ 3. View Services *(3 days)*
 
-Backend API to fetch services with filters — 1 day
+- [ ] 🎨 **UI**: Service list + filter options – *1 day*
+- [ ] 🔧 **Backend**: API for services with filters – *1 day*
+- [ ] 🔗 **Integration**: Connect UI filters to API – *0.5 day*
+- [ ] 🧪 **Testing**: Filtering and UI testing – *0.5 day*
 
-Connect frontend filters with API (dynamic filtering) — 0.5 days
+---
 
-Test service browsing and filtering — 0.5 days
+## ✅ 4. Book Appointment *(4 days)*
 
-4. Book Appointment (4 days)
-Design booking form UI (date/time picker) — 1 day
+- [ ] 🎨 **UI**: Booking form with date/time – *1 day*
+- [ ] 🔧 **Backend**: Create booking, check availability – *1.5 day*
+- [ ] 🧩 **Logic**: Booking confirmation & error handling – *0.75 day*
+- [ ] 🧪 **Testing**: End-to-end booking flow – *0.75 day*
 
-Backend API to create bookings and validate availability — 1.5 days
+---
 
-Implement booking confirmation and error handling — 0.75 days
+## ✅ 5. Real-Time Confirmation *(2 days)*
 
-Test booking functionality end-to-end — 0.75 days
+- [ ] 🔁 **Realtime**: WebSocket or polling for booking updates – *1 day*
+- [ ] 🎨 **UI**: Show live status – *0.5 day*
+- [ ] 🧪 **Testing**: Real-time status testing – *0.5 day*
 
-5. Real-Time Confirmation (2 days)
-Implement real-time booking status update (e.g., via WebSocket or polling) — 1 day
+---
 
-Design UI for showing booking status dynamically — 0.5 days
+****************************************************************************************************************************************************************************************************************************************************************************
+💡 MYcleaner – Iteration 1 User Stories and Planning
+| User Story             | Priority | Estimation (Days) | Description                                      | Note                             |
+|------------------------|----------|--------------------|--------------------------------------------------|----------------------------------|
+| User Registration      | High     | 3                  | Users sign up with email & password              | Essential for new users          |
+| User Login             | High     | 2                  | Users log in with existing credentials           | Core feature                     |
+| View Services          | High     | 3                  | Show available cleaning options with filters     | Enables users to browse          |
+| Book Appointment       | High     | 4                  | Select date/time and book a service              | Core booking functionality       |
+| Real-Time Confirmation | High     | 2                  | Show instant booking status                      | Keeps users informed             |
 
-Test real-time confirmation updates — 0.5 days
