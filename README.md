@@ -28,7 +28,7 @@ with the unique option to select cleaners based on language preferences to overc
 | Asmita Sharma     | Project Manager    | Develop server-side logic, manage database, create APIs, handle authentication.  |
 | Juninho Chandra   | Frontend Developer | Design and implement user interfaces, ensure responsive and intuitive UI/UX.     |
 | Saung Hnin Phyu   | Documenataion & QA | Coordinate tasks, write documentation, perform testing, and manage deployment.   |
-| Daniel            | Developer          | UI and interface                                                                 |
+| Danil Boiarskii   | Developer          | UI and interface                                                                 |
 
 
 
