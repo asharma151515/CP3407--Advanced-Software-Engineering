@@ -55,3 +55,10 @@ Each layer has its own job:
 4. If correct, backend redirects the user to the dashboard page.
 5. If not, it sends an error message to let the user know.
 
+### Index (Main) Page
+1. Acts as the landing page for all users (both guests and logged-in users).
+2. Displays a list of available cleaning services without requiring login.
+3. Allows users to navigate to other parts of the website such as Login, Register, Services, About Us, Testimonials, and Contact.
+4. Provides access to the registration or login process via the "Get Started" button.
+5. Does not interact with the backend or load any dynamic data from JSON files.
+6. Serves as a static overview of the platform to inform and attract users.
