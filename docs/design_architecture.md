@@ -62,3 +62,15 @@ Each layer has its own job:
 4. Provides access to the registration or login process via the "Get Started" button.
 5. Does not interact with the backend or load any dynamic data from JSON files.
 6. Serves as a static overview of the platform to inform and attract users.
+
+### Dashboard Page
+1. This page is shown immediately after a successful login.
+2. It displays a summary of the user's activity, including:
+   - Number of bookings this month
+   - Number of pending messages
+   - Number of upcoming bookings
+3. The data shown is expected to be loaded from the backend or JSON files (if implemented).
+4. Users can access other sections (Book Cleaner, Your Bookings, Message Cleaner) from the sidebar.
+5. There is a message box that allows users to send messages to their cleaner (if messaging is implemented).
+6. If any data fails to load, an error message is shown.
+7. The page also includes a logout button in the sidebar for ending the session.
