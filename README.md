@@ -103,6 +103,7 @@ CREATE TABLE IF NOT EXISTS availability (
 
 ------------------------------------------------------------------------------
 
+
 ## 📋 Bookings Table (`bookings`)
 
 Tracks all booking transactions made by customers. Each record links a user to a cleaner along with booking date, time, amount, and status.
@@ -122,14 +123,16 @@ CREATE TABLE IF NOT EXISTS bookings (
   FOREIGN KEY (cleanerId) REFERENCES cleaners(id)
 );
 
-
 **Note** ---> The `/api/send-confirmation` endpoint creates a booking and sends a confirmation email to the user using Mailgun SMTP.
 
 ----------------------------------------------------------------------------------
 
-## 💳 Payments Table (`payments`) *(Optional / For Future Use)*
 
-Handles transaction records related to bookings.
+
+## 💳Payments Table (`payments`)
+
+
+Used for mock payment tracking during bookings.
 
 ```sql
 CREATE TABLE IF NOT EXISTS payments (
