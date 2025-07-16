@@ -61,7 +61,24 @@ Combined Must + Should = **26 days**, which fits within the first two iterations
   3. Profile & booking stubs → `src/`  
   4. Mock payment page → `src/`  
   5. Unit tests → `tests/`  
-  6. UAT plan → `docs/uat_plan.md`  
+  6. UAT plan → `docs/uat_plan.md`
+ ---
+
+ # User Stories and Outcomes
+
+| ID   | User Story                                              | Outcome                                                                 |
+|------|----------------------------------------------------------|-------------------------------------------------------------------------|
+| US#1 | As a user, I want to register and login securely.        | Fully implemented registration and login with session tracking.         |
+| US#2 | As a user, I want to view available cleaners.            | `/api/cleaner` and `/api/cleaners` endpoints display cleaner details.   |
+| US#3 | As a customer, I want to book a cleaner.                 | Booking form submits cleaner, time, and payment data.                   |
+| US#4 | As a user, I want to receive confirmation emails.        | Nodemailer integration sends formatted email confirmations.             |
+| US#5 | As a cleaner, I want to manage my availability.          | `/api/availability` allows slots to be added and fetched.               |
+| US#6 | As a customer, I want to see my booking history.         | `/api/user/dashboard` shows bookings tied to logged-in user.            |
+
+---
+
+
+
 
 ### 4.2 Iteration 2 (11 June – 1 July 2025)
 
