@@ -52,10 +52,6 @@
 
 **Total Estimated Time: 14 days**
 -------------------------------------------------------------------------------------------------
-
-
-
-
 # MYcleaner – Iteration 1 User Stories and Planning
 | User Story             | Priority | Estimation (Days) | Description                                      | Note                             |
 |------------------------|----------|--------------------|--------------------------------------------------|----------------------------------|
@@ -76,7 +72,122 @@
 - **Total Actual Team-Days (A1):** `20 × 4 = 80`
 
 -------------------------------------------------------------------------------------------------
+# ✅ Iteration 1 Summary – MyClean App
 
+
+## Customer Goal
+
+Build a minimum viable cleaning service web platform where users can:
+
+- Register and login
+- View available cleaners
+- Book cleaning services
+- Receive email confirmations
+- Review booking history
+
+---
+
+## User Stories Implemented
+
+| ID   | User Story                                                                 | Status        |
+|------|----------------------------------------------------------------------------|----------------|
+| US#1 | As a user, I want to register and login securely.                         | ✅ Implemented |
+| US#2 | As a user, I want to view available cleaners.                             | ✅ Implemented |
+| US#3 | As a customer, I want to book a cleaner and select time/date.            | ✅ Implemented |
+| US#4 | As a user, I want to receive a booking confirmation via email.           | ✅ Implemented |
+| US#5 | As a cleaner, I want to manage and view availability.                    | ✅ Implemented |
+| US#6 | As a customer, I want to view my past and upcoming bookings.             | ✅ Implemented |
+
+---
+
+## Features & Architecture
+
+### Backend (`server.js`)
+- Built with `Node.js` + `Express`
+- RESTful API endpoints:
+  - `/api/register`, `/api/login`
+  - `/api/cleaner`, `/api/availability`, `/api/booking`
+  - `/api/user/dashboard`, `/api/send-confirmation`
+- SQLite3 used for persistent storage
+- Session handling via `express-session`
+- Email confirmations via `nodemailer` (Mailgun SMTP)
+
+### Database Tables
+- `users`, `cleaners`, `availability`, `bookings`, `payments`
+- Dummy cleaner data auto-inserts on first run
+
+### Booking Logic
+- Booking slot is 3 hours
+- Cleaner availability stored separately
+- Predefined slots used for simplicity:  
+  `08:00–11:00`, `11:00–14:00`, `14:00–17:00`, `17:00–20:00`
+
+### Email Confirmation
+- Sends HTML and plain text using Mailgun
+- Includes cleaner info, time, service, and contact
+
+### Payment (Mock)
+- `/api/payment` endpoint to simulate transactions
+- Accepts card number, expiry, CVC (not stored)
+
+---------
+
+## Testing & Verification
+
+- Manual testing with browser and Postman
+- Verified all user flows:
+  - Registration/login
+  - Cleaner list loading
+  - Slot booking and confirmation email
+  - Booking dashboard
+- Console logging and in-browser debugging
+
+------------
+
+## Ready for Iteration 2
+
+
+- 💬 **Customer Feedback**:
+  - Add slot availability filter by cleaner
+  - Use dropdown to choose from available times
+  - Improve password security with hashing
+  - Add cancel/edit booking options
+
+- 🧹 **Planned Enhancements**:
+  - Use `bcrypt` for password hashing
+  - Add input validation and frontend form checks
+  - Integrate cleaner ratings and reviews
+  - Improve session timeout and security
+  - Refactor `/send-confirmation` logic to reduce duplication
+
+---
+
+## 🧠 Head First Alignment
+
+| HFSD Concept                       | How It Was Applied                      |
+|-----------------------------------|-----------------------------------------|
+| Iterative Development             | Delivered working software in chunks    |
+| User Stories → Tasks              | Broke each story into backend endpoints |
+| Task Board & Velocity             | Estimated days per task (tracked offline)|
+| "Good Enough" Design              | Delivered functional MVP first          |
+| Working Code > Perfect Code       | Iteration focused on functional delivery|
+| Constant Customer Feedback        | Iteration 2 incorporates new insights    |
+
+---
+
+## 📁 Repository Structure
+
+src/
+├── server.js
+├── database (sqlite)
+├── public/
+│ ├── Index/index.html
+│ ├── Registration/register.html
+│ ├── Cleaner/cleaners.html
+│ ├── dashboard.html
+│ └── table.html
+
+----------------------------------
 ### Velocity Calculation
 
 We calculate team velocity using the formula:
