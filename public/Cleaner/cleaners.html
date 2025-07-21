@@ -238,15 +238,15 @@
   let cleaners = [];
   let currentLang = "en";
 
-  function translate(text) {
-    const dict = {
-      "Languages": { zh: "语言", en: "Languages" },
-      "Services": { zh: "服务", en: "Services" },
-      "Find a Cleaner": { zh: "选择您的清洁工", en: "Find a Cleaner" },
-      "Search by name or country...": { zh: "按名字或国家搜索...", en: "Search by name or country..." }
-    };
-    return dict[text] ? dict[text][currentLang] : text;
-  }
+function translate(text) {
+  const dict = {
+    "Languages": { zh: "语言", en: "Languages" },
+    "Services": { zh: "服务", en: "Services" },
+    "Find a Cleaner": { zh: "选择您的清洁工", en: "Find a Cleaner" },
+    "Search by name or country...": { zh: "按名字或国家搜索...", en: "Search by name or country..." }
+  };
+}
+
 
   function toggleLanguage() {
     currentLang = currentLang === "en" ? "zh" : "en";
