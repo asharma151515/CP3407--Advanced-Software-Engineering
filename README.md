@@ -28,7 +28,11 @@ with the unique option to select cleaners based on language preferences to overc
 | Asmita Sharma     | Project Manager    | Develop server-side logic, manage database, create APIs, handle authentication.  |
 | Juninho Chandra   | Frontend Developer | Design and implement user interfaces, ensure responsive and intuitive UI/UX.     |
 | Saung Hnin Phyu   | Documenataion & QA | Coordinate tasks, write documentation, perform testing, and manage deployment.   |
+
 | Danil Boiarskii   | Developer          | UI and interface                                                                 |
+=======
+| Boiarskii Danil   | Developer          | UI and interface                                                                 |
+
 
 
 
@@ -42,63 +46,113 @@ with the unique option to select cleaners based on language preferences to overc
 ### Initial Backlog Ideas
 See [initial_backlog_ideas.md](./initial_backlog_ideas.md)  
 
-## 4. Database Initialization
-This project uses SQLite to store all data .
+# 📦 Database Initialization
 
-## Tables Created##
-*users* — stores customer details
+This project uses **SQLite** to manage data storage. The database is initialized automatically on server startup, and the following tables are created to support 
+application features such as user registration, cleaner profiles, booking management, and availability tracking.
 
-*cleaners* — stores cleaner profiles and their services
+----------------------------------------------------------------------
 
-*bookings* — stores booking information for customers and cleaners
+## 👤 Users Table (`users`)
 
-*payments* — stores payment transactions linked to bookings
+**Stores registered customer information**
 
--- Users Table
+```sql
 CREATE TABLE IF NOT EXISTS users (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  name TEXT,
+  user_name TEXT,
   email TEXT UNIQUE,
-  passwordHash TEXT,
+  password TEXT,
   dob TEXT,
   area TEXT,
   phone TEXT
 );
+```
 
--- Cleaners Table
+---------------------------------------------------------------------------
+
+## 🧹 Cleaners Table (`cleaners`)
+
+Contains cleaner profiles, their service offerings, language capabilities, hourly rates, and country of origin.
+
+```sql
 CREATE TABLE IF NOT EXISTS cleaners (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   name TEXT,
-  languages TEXT,    -- comma-separated values, e.g. "Mandarin, English"
-  services TEXT,     -- comma-separated values, e.g. "mopping, vacuuming"
-  hourlyRate REAL,
-  description TEXT
+  description TEXT,
+  languages TEXT,   -- comma-separated values, e.g., "Mandarin, English"
+  services TEXT,    -- comma-separated values, e.g., "Mopping, Vacuuming"
+  price INTEGER,
+  country TEXT,
+  image TEXT
 );
+```
 
--- Bookings Table
+---------------------------------------------------------------------------------
+
+## 📆 Availability Table (`availability`)
+
+Represents each cleaner's available time slots for booking.
+
+```sql
+CREATE TABLE IF NOT EXISTS availability (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  date TEXT,          -- format YYYY-MM-DD
+  startTime TEXT,     -- format HH:MM
+  endTime TEXT,       -- format HH:MM
+  cleanerId INTEGER,
+  FOREIGN KEY (cleanerId) REFERENCES cleaners(id)
+);
+```
+
+------------------------------------------------------------------------------
+
+
+## 📋 Bookings Table (`bookings`)
+
+Tracks all booking transactions made by customers. Each record links a user to a cleaner along with booking date, time, amount, and status.
+
+```sql
 CREATE TABLE IF NOT EXISTS bookings (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
+  customerName TEXT,
+  customerEmail TEXT,
   customerId INTEGER,
+  date TEXT,          -- format YYYY-MM-DD
+  startTime TEXT,     -- format HH:MM
+  endTime TEXT,       -- format HH:MM
   cleanerId INTEGER,
-  date TEXT,           -- format YYYY-MM-DD
-  startTime TEXT,      -- format HH:MM
-  endTime TEXT,        -- format HH:MM
   amount REAL,
-  status TEXT,         -- e.g. pending, confirmed, completed, cancelled
-  FOREIGN KEY (customerId) REFERENCES users(id),
+  status TEXT,        -- e.g., pending, confirmed, completed
   FOREIGN KEY (cleanerId) REFERENCES cleaners(id)
 );
 
--- Payments Table
+**Note** ---> The `/api/send-confirmation` endpoint creates a booking and sends a confirmation email to the user using Mailgun SMTP.
+
+----------------------------------------------------------------------------------
+
+
+
+## 💳Payments Table (`payments`)
+
+
+Used for mock payment tracking during bookings.
+
+```sql
 CREATE TABLE IF NOT EXISTS payments (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   bookingId INTEGER,
   amount REAL,
-  paymentMethod TEXT,       -- e.g. credit_card
-  transactionDate TEXT,     -- ISO 8601 format, e.g. 2025-06-14T12:00:00Z
-  status TEXT,              -- e.g. success, failed
+  paymentMethod TEXT,       -- e.g., credit_card
+  transactionDate TEXT,     -- ISO format, e.g., 2025-06-14T12:00:00Z
+  status TEXT,              -- e.g., success, failed
   FOREIGN KEY (bookingId) REFERENCES bookings(id)
 );
+```
+
+------------------------------------------------------------------------
+
+**Conclusion** This setup ensures a structured and scalable backend system for managing cleaning service operations efficiently.
 
 ------------------------------------------------------------------------
 

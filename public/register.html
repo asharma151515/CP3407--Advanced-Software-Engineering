@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="/Registration/registration.css" />
   <style>
     body {
-      background-image: url('/Registration/background.gif');
+      background-image: url('https://images.unsplash.com/photo-1597300432483-63fc8e058592?auto=format&fit=crop&w=1600&q=80');
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center;
@@ -57,6 +57,7 @@
       background-color: #0056b3;
     }
     #message {
+      display:none; /*hide initially */
       text-align: center;
       font-size: 1.25rem;
       font-weight: bold;
@@ -76,10 +77,33 @@
       color: #007a3d;
       border: 1px solid #007a3d;
     }
+
+    .logo-text .line1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: bold;
+      color: #2a2a2a;
+    }
+
+    .logo-text .line2 {
+      font-family: 'Pacifico', cursive;
+      font-size: 18px;
+      color: #4CAF50;
+      font-weight: 500;
+     }
+
+
   </style>
 </head>
 <body>
 <div id="message" ></div>
+<header style="display: flex; justify-content: center; align-items: center; padding: 20px;">
+  <img src="static/logo.png" alt="ScrubHub Logo" class="logo-img" style="height: 60px; width: 60px; border-radius: 8px; margin-right: 10px;">
+  <div class="logo-text">
+    <div class="line1">Scrub</div>
+    <div class="line2">Hub</div>
+  </div>
+</header>
   <div class="container-wrapper">
 
     <!-- Registration Form -->
@@ -196,4 +220,8 @@ document.querySelector('#login').addEventListener('submit', async (event) => {
 });
 </script>
 </body>
+
+<footer style="text-align: center; padding: 20px; background-color: rgba(255, 255, 255, 0.85); font-size: 14px;">
+  <p>&copy; 2025 ScrubHub Cleaning Services | <a href="mailto:scrubhub@customercare.in">Contact Us</a></p>
+</footer>
 </html>
