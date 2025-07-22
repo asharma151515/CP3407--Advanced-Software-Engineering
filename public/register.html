@@ -5,18 +5,21 @@
   <title>User Portal</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="/Registration/registration.css" />
-  <style>
-    body {
-      background-image: url('https://images.unsplash.com/photo-1597300432483-63fc8e058592?auto=format&fit=crop&w=1600&q=80');
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center;
-      background-attachment: fixed;
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-    }
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
+  <style>
+    
+  body {
+    background-image: url('https://images.pexels.com/photos/3876635/pexels-photo-3876635.jpeg?_gl=1*5jmxo5*_ga*MzU5NzUyODIyLjE3NTI1NDUxMzU.*_ga_8JE65Q40S6*czE3NTI1NDc5NzIkbzIkZzEkdDE3NTI1NTAwMDEkajUwJGwwJGgw');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+   }
+      
     .container-wrapper {
       display: flex;
       justify-content: center;
@@ -27,7 +30,7 @@
     }
 
     .registration, .login {
-      background-color: rgba(255, 255, 255, 0.9);
+      background-color: rgba(255, 255, 255, 0.95);
       padding: 30px;
       border-radius: 10px;
       width: 380px;
@@ -57,7 +60,7 @@
       background-color: #0056b3;
     }
     #message {
-      display:none; /*hide initially */
+      display: none; /* hide initially */
       text-align: center;
       font-size: 1.25rem;
       font-weight: bold;
@@ -77,29 +80,61 @@
       color: #007a3d;
       border: 1px solid #007a3d;
     }
+    
+    .logo-img {
+      height: 100px;
+      width: 100px;
+      border-radius: 8px;
+      margin-right: 10px;
+    }
+
+
 
     .logo-text .line1 {
       font-family: 'Playfair Display', serif;
-      font-size: 20px;
+      font-size: 30px;
       font-weight: bold;
       color: #2a2a2a;
     }
 
     .logo-text .line2 {
       font-family: 'Pacifico', cursive;
-      font-size: 18px;
+      font-size: 26px;
       color: #4CAF50;
       font-weight: 500;
      }
+    
+    input[type="submit"] {
+      background-color: #4CAF50; /* eco green */
+      color: white;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+    input[type="submit"]:hover {
+      background-color: #388E3C;
+    }
 
+
+   .agree-container {
+     display: flex;
+     align-items: center;
+     gap: 8px; /* Adjust this value to control spacing */
+    }
 
   </style>
 </head>
 <body>
+
 <div id="message" ></div>
 <header style="display: flex; justify-content: center; align-items: center; padding: 20px;">
-  <img src="static/logo.png" alt="ScrubHub Logo" class="logo-img" style="height: 60px; width: 60px; border-radius: 8px; margin-right: 10px;">
+  <img src="static/logo.png" alt="ScrubHub Logo" class="logo-img" style="height: 100px; width: 100px; border-radius: 8px; margin-right: 10px;">
+
+  <i class="fas fa-leaf" style="color: #4CAF50; margin-right: 6px;"></i>
   <div class="logo-text">
+    <p style="margin: 0; font-size: 18px; color: #2a2a2a; text-align: center;">
+      <em>Clean Spaces. Healthy Living.</em>
+    </p>
+
     <div class="line1">Scrub</div>
     <div class="line2">Hub</div>
   </div>
@@ -144,10 +179,10 @@
         <label>Confirm Password:</label><br>
         <input type="password" name="confirm_password" placeholder="Confirm Password" required><br>
 
-        <label style="display: flex; align-items: center; gap: 8px;">
-        <input type="checkbox" required>
-         I agree to Terms & Conditions
-</label><br><br>
+        <label class="agree-container">
+          <input type="checkbox" />
+          <span>I agree to Terms & Conditions</span>
+        </label>
 
         <input type="submit" value="REGISTER">
       </form>
@@ -220,7 +255,6 @@ document.querySelector('#login').addEventListener('submit', async (event) => {
 });
 </script>
 </body>
-
 <footer style="text-align: center; padding: 20px; background-color: rgba(255, 255, 255, 0.85); font-size: 14px;">
   <p>&copy; 2025 ScrubHub Cleaning Services | <a href="mailto:scrubhub@customercare.in">Contact Us</a></p>
 </footer>
