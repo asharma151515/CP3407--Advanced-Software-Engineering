@@ -59,4 +59,3 @@
 | Book Appointment       | High     | 4                  | Select date/time and book a service              | Core booking functionality       |
 | Real-Time Confirmation | High     | 2                  | Show instant booking status                      | Keeps users informed             |
 
-
