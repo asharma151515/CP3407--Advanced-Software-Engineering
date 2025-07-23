@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tables in SQLite</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      margin-top: 1rem;
+      width: 100%;
+    }
+    table, th, td {
+      border: 1px solid #ccc;
+    }
+    th, td {
+      padding: 0.5rem;
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+  <h2>Available Tables</h2>
+  <select id="tableSelect">
+    <option value="">Loading tables...</option>
+  </select>
+
+  <div id="results"></div>
+
+  <script>
+    const tableSelect = document.getElementById('tableSelect');
+    const results = document.getElementById('results');
+
+    // Load tables
+    async function loadTables() {
+      const response = await fetch('/tables');
+      const data = await response.json();
+      tableSelect.innerHTML = '';
+      if (data.tables.length) {
+        data.tables.forEach(table => {
+          const option = document.createElement('option');
+          option.value = table;
+          option.textContent = table;
+          tableSelect.appendChild(option);
+        });
+      } else {
+        const option = document.createElement('option');
+        option.value = '';
+        option.textContent = 'No tables found';
+        tableSelect.appendChild(option);
+      }
+    }
+
+    // Load data for selected table
+    async function loadTableData(table) {
+      if (!table) {
+        results.innerHTML = '';
+        return;
+      }
+
+      const response = await fetch(`/table/${table}`);
+      const data = await response.json();
+
+      if (!data.length) {
+        results.innerHTML = '<p>No data found in this table</p>';
+        return;
+      }
+
+      // Build table
+      const columns = Object.keys(data[0]);
+      let html = '<table><thead><tr>';
+      columns.forEach(col => {
+        html += `<th>${col}</th>`;
+      });
+      html += '</tr></thead><tbody>';
+      data.forEach(row => {
+        html += '<tr>';
+        columns.forEach(col => {
+          html += `<td>${row[col]}</td>`;
+        });
+        html += '</tr>';
+      });
+      html += '</tbody></table>';
+      results.innerHTML = html;
+    }
+
+    // Event listener
+    tableSelect.addEventListener('change', (e) => {
+      loadTableData(e.target.value);
+    });
+
+    // Initial load
+    loadTables();
+  </script>
+</body>
+</html>

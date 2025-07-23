@@ -1,0 +1,56 @@
+/* Wrapper for both forms */
+.container-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 40px;
+    flex-wrap: wrap;
+    margin-top: 40px;
+}
+
+/* Both forms share this base styling */
+.registration, .login {
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 30px;
+    border-radius: 10px;
+    width: 400px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    text-align: left;
+}
+
+/* Headings */
+.registration h2,
+.login h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Input fields for both forms */
+.container form input[type="text"],
+.container form input[type="email"],
+.container form input[type="password"],
+.container form input[type="date"],
+.container form input[type="tel"],
+.container form select {
+    width: 100%;
+    padding: 10px;
+    margin: 6px 0 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Submit buttons */
+.container form input[type="submit"] {
+    width: 100%;
+    background-color: #28a745;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.container form input[type="submit"]:hover {
+    background-color: #218838;
+}

@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cleaner Finder</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    
+    /* Background with subtle paper texture and a gentle overlay */
+    body {
+      background: 
+        linear-gradient(rgba(198, 239, 206, 0.85), rgba(144, 238, 144, 0.85)),
+        url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1470&q=80') no-repeat center center fixed;
+      background-size: cover;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+    }
+
+    /* Stamp style behind the title */
+    #title {
+      position: relative;
+      font-weight: bold;
+      color: #2c3e50;
+      margin-bottom: 2rem;
+      z-index: 1;
+    }
+    /* #title::before {
+      content: "CLEANER";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-15deg);
+      font-size: 4rem;
+      color: rgba(44, 62, 80, 0.1);
+      font-weight: 900;
+      letter-spacing: 0.3em;
+      z-index: -1;
+      user-select: none;
+    } */
+
+    .cleaner-card {
+      border-radius: 12px;
+      overflow: hidden;
+      background-color: #ffffff;
+      transition: transform 0.25s ease-in-out, box-shadow 0.25s ease-in-out;
+      border: 1px solid #ddd;
+      box-shadow: 0 2px 6px rgb(0 0 0 / 0.05);
+    }
+
+    .cleaner-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    }
+
+    .cleaner-card img {
+      height: 150px;
+      object-fit: contain;
+      background-color: #f7f9fa;
+      padding: 20px;
+    }
+
+    .card-body {
+      padding: 1rem 1.25rem;
+    }
+
+    .rate {
+      color: #27ae60;
+      font-weight: bold;
+      margin-bottom: 10px;
+      font-size: 1.1rem;
+    }
+
+    .badge {
+      font-size: 0.8rem;
+      padding: 5px 12px;
+      border-radius: 12px;
+    }
+
+    .form-select,
+    .form-control {
+      border-radius: 5px;
+    }
+
+    button.btn-success {
+      background-color: #2ecc71;
+      border-color: #27ae60;
+      transition: background-color 0.3s ease;
+    }
+
+    button.btn-success:hover {
+      background-color: #27ae60;
+    }
+
+    .btn-secondary {
+      background-color: #34495e;
+      border-color: #2c3e50;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-secondary:hover {
+      background-color: #2c3e50;
+    }
+    
+
+    .page-title {
+       font-size: 2.5rem;
+       font-weight: bold;
+       color: #2c3e50;
+       position: relative;
+    }
+
+    .page-title .highlight {
+       color: #27ae60; /* green tone for emphasis */
+       position: relative;
+    }
+
+    .page-title .highlight::after {
+       content: "";
+       position: absolute;
+       left: 0;
+       bottom: -5px;
+       width: 100%;
+       height: 4px;
+       background-color: #a3e4b3;
+       border-radius: 2px;
+     }
+
+
+  </style>
+</head>
+<body>
+
+<div class="container py-5">
+  <h1 class="page-title text-center mb-4" id="title">Book a <span class="highlight">Trusted</span> Cleaner</h1>
+
+
+  <div class="row justify-content-center mb-4 g-2">
+    <div class="col-md-4">
+      <input
+        type="text"
+        id="searchInput"
+        class="form-control"
+        placeholder="Search by name or country..."
+        oninput="filterCleaners()"
+      />
+    </div>
+    <div class="col-md-3">
+      <select class="form-select" id="languageFilter" onchange="filterCleaners()">
+        <option value="All">All Languages</option>
+        <option value="Mandarin">Mandarin</option>
+        <option value="Burmese">Burmese</option>
+        <option value="Tagalog">Tagalog</option>
+        <option value="Hindi">Hindi</option>
+        <option value="Nepali">Nepali</option>
+        <option value="Indonesian">Indonesian</option>
+        <option value="Thai">Thai</option>
+        <option value="Sinhala">Sinhala</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+      <button class="btn btn-secondary w-100" onclick="toggleLanguage()">🌐 中文/English</button>
+    </div>
+  </div>
+
+
+  <div class="row" id="cleanersContainer"></div>
+</div>
+
+<!-- Booking Modal -->
+<div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="bookingLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <form class="modal-content" id="bookingForm">
+      <div class="modal-header">
+       <h5 class="modal-title" id="bookingLabel">Book Cleaner</h5>
+       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="cleanerNameInput">
+     <div class="mb-3">
+	<label for="bookingDate" class="form-label">Booking Date</label>
+          <input type="date" class="form-control" id="bookingDate" required>
+</div>
+
+
+
+<div class="mb-3">
+       <label for="slot" class="form-label">Select Time Slot</label>
+       <select class="form-select" id="slot" required>
+          <option value="">Select a slot</option>
+          <!-- Options will be injected dynamically -->
+       </select>
+      </div>
+        <div class="mb-3">
+          <label for="clientEmail" class="form-label">Your Email</label>
+          <input type="text" class="form-control" id="clientEmail" value="asmitasharmaaaa0@gmail.com" required>
+        </div>
+        <!--<div class="mb-3">
+          <label for="dateTime" class="form-label">Preferred Date & Time</label>
+          <input type="datetime-local" class="form-control" id="dateTime" required>
+        </div>--!>
+        <div class="mb-3">
+          <label for="service" class="form-label">Service</label>
+          <select class="form-select" id="service" required>
+            <option value="">Select a service</option>
+            <option value="Mopping">Mopping</option>
+            <option value="Vacuuming">Vacuuming</option>
+            <option value="Dusting">Dusting</option>
+            <option value="Deep Cleaning">Deep Cleaning</option>
+            <option value="Laundry">Laundry</option>
+            <option value="Ironing">Ironing</option>
+            <option value="Carpet Cleaning">Carpet Cleaning</option>
+            <option value="Window Cleaning">Window Cleaning</option>
+            <option value="Kitchen Cleaning">Kitchen Cleaning</option>
+            <option value="Bathroom Sanitization">Bathroom Sanitization</option>
+            <option value="General Cleaning">General Cleaning</option>
+            <option value="Organizing">Organizing</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="contact" class="form-label">Contact Info</label>
+          <input type="text" class="form-control" id="contact" required>
+        </div>
+      </div>
+<p id="bookingStatus" class="text-primary mt-2" style="display: none;">Processing...</p>
+
+      <div class="modal-footer">
+	<button type="button" class="btn btn-secondary" id="payNowBtn">Pay Now</button>
+        <button type="submit" class="btn btn-primary" id="confirmBookingBtn" disabled>Confirm Booking</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  let cleaners = [];
+  let currentLang = "en";
+
+  function translate(text) {
+    const dict = {
+      "Languages": { zh: "语言", en: "Languages" },
+      "Services": { zh: "服务", en: "Services" },
+      "Find a Cleaner": { zh: "选择您的清洁工", en: "Find a Cleaner" },
+      "Search by name or country...": { zh: "按名字或国家搜索...", en: "Search by name or country..." }
+    };
+    return dict[text] ? dict[text][currentLang] : text;
+  }
+
+  function toggleLanguage() {
+    currentLang = currentLang === "en" ? "zh" : "en";
+    document.getElementById("title").textContent = translate("Find a Cleaner");
+    document.getElementById("searchInput").placeholder = translate("Search by name or country...");
+    filterCleaners();
+  }
+
+  function filterCleaners() {
+    const searchValue = document.getElementById("searchInput").value.toLowerCase();
+    const selectedLanguage = document.getElementById("languageFilter").value;
+
+    const filtered = cleaners.filter(c =>
+      (selectedLanguage === "All" || c.languages.includes(selectedLanguage)) &&
+      (c.name.toLowerCase().includes(searchValue) || c.country.toLowerCase().includes(searchValue))
+    );
+
+    renderCleaners(filtered);
+  }
+
+  function renderCleaners(cleanerList) {
+  const container = document.getElementById("cleanersContainer");
+  container.innerHTML = "";
+
+  if (cleanerList.length === 0) {
+    container.innerHTML = '<p class="text-center">No cleaners found.</p>';
+    return;
+  }
+
+  const iconURL = "https://cdn-icons-png.flaticon.com/512/4140/4140047.png"; // universal icon
+
+  cleanerList.forEach(cleaner => {
+  container.innerHTML += `
+    <div class="col-md-6 col-lg-4 mb-4">
+      <div class="card h-100 shadow-sm cleaner-card">
+        <img src="${iconURL}" alt="Cleaner Icon" class="card-img-top p-3" style="height: 150px; object-fit: contain;">
+        <div class="card-body">
+          <h5 class="card-title" title="From ${cleaner.country}">
+            ${cleaner.name}
+          </h5>
+          <span class="badge bg-info text-dark mb-2">${cleaner.country}</span>
+          <p><strong>Languages:</strong> ${cleaner.languages}</p>
+          <p><strong>Services:</strong> ${cleaner.services}</p>
+          <p class="rate">$${cleaner.price}/hr</p>
+          <p class="card-text">${cleaner.description}</p>
+          <button class="btn btn-success w-100" onclick="openBookingModal('${cleaner.name}')">Book Now</button>
+        </div>
+      </div>
+    </div>
+  `;
+});
+
+}
+
+
+  async function openBookingModal(cleanerName) {
+  document.getElementById("cleanerNameInput").value = cleanerName;
+  document.getElementById("bookingLabel").innerText = "Book " + cleanerName;
+  document.getElementById("bookingForm").reset();
+
+  const dateInput = document.getElementById("bookingDate");
+  const slotSelect = document.getElementById("slot");
+
+  // When date is selected, fetch available slots
+  dateInput.onchange = async function () {
+    const date = this.value;
+    if (!date) return;
+
+    try {
+      const response = await fetch(`/api/cleaner-slots?name=${encodeURIComponent(cleanerName)}&date=${date}`);
+      const slots = await response.json();
+
+      slotSelect.innerHTML = '<option value="">Select a slot</option>'; // reset
+      slots.forEach(slot => {
+        const option = document.createElement("option");
+        option.value = `${slot.startTime}|${slot.endTime}`;
+        option.textContent = `${slot.startTime} - ${slot.endTime}`;
+        slotSelect.appendChild(option);
+      });
+
+      if (slots.length === 0) {
+        const option = document.createElement("option");
+        option.disabled = true;
+        option.textContent = "No available slots for this date";
+        slotSelect.appendChild(option);
+      }
+    } catch (err) {
+      console.error("Error loading slots:", err);
+    }
+  };
+
+  const modal = new bootstrap.Modal(document.getElementById('bookingModal'));
+  modal.show();
+}
+
+
+document.getElementById("bookingForm").addEventListener("submit", async function (e) {
+  e.preventDefault();
+
+  const cleanerName = document.getElementById("cleanerNameInput").value;
+  const clientEmail = document.getElementById("clientEmail").value;
+  const date = document.getElementById("bookingDate").value;
+  const slotValue = document.getElementById("slot").value;
+  const service = document.getElementById("service").value;
+  const contact = document.getElementById("contact").value;
+
+  const statusMsg = document.getElementById("bookingStatus");
+  const submitBtn = document.querySelector("#bookingForm button[type='submit']");
+
+  if (!date) {
+    alert("Please select a preferred date.");
+    return;
+  }
+
+  if (!slotValue) {
+    alert("Please select a valid time slot.");
+    return;
+  }
+
+  const [startTime, endTime] = slotValue.split("|");
+
+  // Show processing message
+  statusMsg.textContent = "Processing...";
+  statusMsg.style.display = "block";
+  submitBtn.disabled = true;
+
+  try {
+    const response = await fetch("/api/send-confirmation", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        cleanerName,
+        clientEmail,
+        date,
+        startTime,
+        endTime,
+        service,
+        contact,
+      }),
+    });
+
+    if (response.ok) {
+      alert(`Booking Confirmed!\nCleaner: ${cleanerName}\nDate: ${date}\nTime: ${startTime} to ${endTime}\nService: ${service}\nContact: ${contact}`);
+      bootstrap.Modal.getInstance(document.getElementById('bookingModal')).hide();
+    } else {
+      alert("Failed to send confirmation email.");
+    }
+  } catch (error) {
+    console.error("Error:", error);
+    alert("Something went wrong.");
+  } finally {
+    statusMsg.style.display = "none";
+    submitBtn.disabled = false;
+  }
+});
+
+
+
+  // Fetch cleaners from API and render
+  async function fetchCleaners() {
+    try {
+      const response = await fetch('http://localhost:3000/api/cleaner');
+      if (!response.ok) throw new Error('Network response was not ok');
+      cleaners = await response.json();
+      renderCleaners(cleaners);
+    } catch (error) {
+      console.error('Failed to load cleaners:', error);
+      document.getElementById("cleanersContainer").innerHTML = '<p class="text-center text-danger">Failed to load cleaners.</p>';
+    }
+  }
+
+  fetchCleaners();
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const payNowBtn = document.getElementById("payNowBtn");
+    const confirmBtn = document.getElementById("confirmBookingBtn");
+
+    payNowBtn.addEventListener("click", () => {
+      // Open under construction page in new tab
+      window.open("/under-construction.html", "_blank");
+
+      // Disable confirm button
+      confirmBtn.disabled = true;
+      confirmBtn.textContent = "Please wait...";
+
+      // Enable after 5 seconds
+      setTimeout(() => {
+        confirmBtn.disabled = false;
+        confirmBtn.textContent = "Confirm Booking";
+      }, 5000);
+    });
+  });
+
+</script>
+
+</body>
+</html>
