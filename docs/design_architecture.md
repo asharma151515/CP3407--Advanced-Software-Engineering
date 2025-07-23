@@ -1,76 +1,117 @@
-# Design Architecture – Scrub Hub
+# design_architecture.md – Scrub Hub
 
 ## 1. Components Overview
 
 ### Frontend (Presentation Layer)
 - **Technology**: HTML, CSS, JavaScript
 - **Responsibilities**:
-  - Shows pages for registration, login, and service browsing
+  - Displays pages like registration, login, dashboard, cleaner profiles
   - Collects user input from forms
-  - Sends and receives data from the backend using `fetch`
+  - Uses `fetch` to interact with backend APIs
 
 ### Backend (Application Layer)
-- **Technology**: Node.js
+- **Technology**: Node.js + Express
 - **Responsibilities**:
-  - Handles user actions like registration and login
-  - Gets data from the frontend and checks or updates JSON files
-  - Sends back results in JSON format
+  - Handles all HTTP routes for registration, login, cleaner availability, booking
+  - Manages user sessions and redirects
+  - Sends confirmation emails using Mailgun via Nodemailer
+  - Reads/writes to the SQLite database
 
 ### Storage (Data Layer)
-- **Technology**: Local JSON Files
+- **Technology**: SQLite
 - **Responsibilities**:
-  - Stores data like users and (in the future) bookings
-  - Acts like a small database
-  - Read and write handled by the backend
+  - Stores structured data: users, cleaners, bookings, availability
+  - Serves as the database backend for persistent data
 
-## 2. Layered Architecture
+## 2. Layered Architecture Diagram
 
-The app is organized in 3 layers:
+    [User Interface]
+        ↓
+    [Frontend - HTML/CSS/JS (fetch API)]
+        ↓ REST API Calls
+    [Backend - Node.js + Express]
+        ↓ SQL Queries
+    [SQLite Database]
 
-    [User]
-    ↓ (Interacts with)
-    [Frontend (HTML/JS)]
-    ↓ (API Requests)
-    [Backend (Node.js)]
-    ↓ (Reads/Writes)
-    [JSON Files]
-
-Each layer has its own job:
-- The frontend shows the website and collects input
-- The backend does the logic and talks to the files
-- The JSON files store the data
-
-## 3. Component Interactions
+## 3. Feature Flows
 
 ### User Registration
-1. User fills in the registration form on the frontend.
-2. The frontend sends this info to `/register` on the backend.
-3. The backend adds the new user to `users.json`.
-5. If successful, it redirects to the login page for the user to log in.
+1. User fills out form in `register.html`.
+2. Form submits to POST `/register`.
+3. Backend checks uniqueness and saves to SQLite (`users` table).
+4. Redirects user to login page with success/error feedback.
 
 ### User Login
-1. User enters their email and password in the login form.
-2. The frontend sends the data to `/login` on the backend.
-3. Backend checks `users.json` for a matching email and password.
-4. If correct, backend redirects the user to the dashboard page.
-5. If not, it sends an error message to let the user know.
+1. User submits form to POST `/login`.
+2. Backend checks `users` table for email/password.
+3. If valid, session is created and response includes redirect to `/dashboard`.
 
-### Index (Main) Page
-1. Acts as the landing page for all users (both guests and logged-in users).
-2. Displays a list of available cleaning services without requiring login.
-3. Allows users to navigate to other parts of the website such as Login, Register, Services, About Us, Testimonials, and Contact.
-4. Provides access to the registration or login process via the "Get Started" button.
-5. Does not interact with the backend or load any dynamic data from JSON files.
-6. Serves as a static overview of the platform to inform and attract users.
+### Dashboard
+1. GET `/dashboard` page fetches data from GET `/api/user/dashboard`.
+2. Shows recent bookings, upcoming services, and messages.
+3. Allows navigation to other booking or messaging sections.
 
-### Dashboard Page
-1. This page is shown immediately after a successful login.
-2. It displays a summary of the user's activity, including:
-   - Number of bookings this month
-   - Number of pending messages
-   - Number of upcoming bookings
-3. The data shown is expected to be loaded from the backend or JSON files (if implemented).
-4. Users can access other sections (Book Cleaner, Your Bookings, Message Cleaner) from the sidebar.
-5. There is a message box that allows users to send messages to their cleaner (if messaging is implemented).
-6. If any data fails to load, an error message is shown.
-7. The page also includes a logout button in the sidebar for ending the session.
+### Cleaner List & Availability
+1. GET `/api/cleaners` fetches all cleaner profiles.
+2. GET `/api/cleaner-slots?name=XXX&date=YYY` checks booked slots and returns available predefined 3-hour slots.
+
+### Booking
+1. Booking form submits to POST `/api/send-confirmation`.
+2. Backend looks up cleaner, calculates price, saves to `bookings` table.
+3. Sends confirmation email using Nodemailer + Mailgun.
+
+### Payment (Mock)
+1. Payment form sends data to POST `/api/payment`.
+2. Backend logs mock payment and responds with success message.
+
+## 4. Backend Routes Summary
+
+### Users
+- POST `/register`: Register user
+- POST `/login`: Login and start session
+- GET `/api/user/dashboard`: Get user's bookings
+
+### Cleaners
+- GET `/api/cleaner`: Get all cleaners (raw)
+- GET `/api/cleaners`: Get all cleaners (parsed)
+- GET `/api/cleaner-slots`: Get available slots for a cleaner by name and date
+
+### Booking & Availability
+- GET `/api/availability`: Get all availability
+- POST `/api/availability`: Add a new availability slot
+- POST `/api/booking`: Save new booking (admin/manual)
+- POST `/api/send-confirmation`: Save booking and send email confirmation
+
+### Payment
+- POST `/api/payment`: Mock payment submission
+
+### Utility
+- GET `/tables`: List table names
+- GET `/table/:name`: View table content
+- GET `/send-email`: Send test email using Mailgun
+
+## 5. Mail Service Integration
+- **Mailer**: Nodemailer using Mailgun SMTP
+- **Email Type**: HTML and plain-text confirmation emails
+- **Sender Email**: asmita.sharma@my.jcu.edu.au
+- **Configuration**:
+  - `host: smtp.mailgun.org`
+  - `port: 587`
+  - `auth.user/pass`: stored manually in code (should move to `.env` in production)
+
+## 6. Static Pages Routing
+- `/`: Index landing page
+- `/login`: Redirect to `/`
+- `/register`: Registration form
+- `/dashboard`: User dashboard after login
+- `/cleaners`: List of cleaners
+- `/table`: View data tables
+
+## 7. Security Notes
+- Passwords stored in plaintext (needs bcrypt hashing in production)
+- Session management via `express-session`
+- Email and password input validations required on both frontend and backend
+- SMTP credentials currently hardcoded (should be moved to environment variables)
+
+---
+**Conclusion:** This design architecture document outlines the core structure and data flow for Scrub Hub. It implements a three-tier architecture using a modular approach, providing clean separation of frontend, backend, and data layers.
