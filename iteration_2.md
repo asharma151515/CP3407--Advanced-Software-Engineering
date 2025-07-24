@@ -19,6 +19,23 @@
 - **Pull Requests:**  
   - Open a PR for each feature branch targeting `iteration-2` (e.g., `feature/ratings-review` → `iteration-2`).
 
+-------
+
+
+### Iteration 2 – User Stories (Backlog)
+
+| ID | Feature                   | Priority | Estimation | Description                         |
+|----|---------------------------|----------|------------|-------------------------------------|
+| 1  | User Profile Management   | High     | 3 days     | Update personal info and preferences|
+| 2  | Booking Management        | High     | 4 days     | Cancel/reschedule bookings          |
+| 3  | Reviews & Ratings         | Low      | 1 day      | Rate and review cleaners            |
+| 4  | Payment Integration       | High     | 5 days     | Online transaction handling         |
+| 5  | Cleaner Availability      | Medium   | 3 days     | Update working hours                |
+| 6  | Admin Dashboard           | Medium   | 4 days     | Admin tools for platform control    |
+| 7  | Notifications & Reminders | Medium   | 3 days     | Alerts for bookings and actions     |
+
+
+
 ---
 # 🚀 Iteration 2 – User Stories Breakdown (MyCleaner – *Scrubhub*)
 
