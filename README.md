@@ -1,4 +1,4 @@
-# cp3407-project-v2025 (MyClean App)
+# CP3407-project-v2025 (MyClean App(Cleaning) - Scrubhub)
 
 ## Topic
 A Booking and Management Platform for Cleaning Services
@@ -23,12 +23,14 @@ with the unique option to select cleaners based on language preferences to overc
 
 ### 👥 Team Roles
 
-| Name              | Role               | Responsibilities                                                                 |
-|-------------------|------------------- |----------------------------------------------------------------------------------|
-| Asmita Sharma     | Project Manager    | Develop server-side logic, manage database, create APIs, handle authentication.  |
-| Juninho Chandra   | Frontend Developer | Design and implement user interfaces, ensure responsive and intuitive UI/UX.     |
-| Saung Hnin Phyu   | Documenataion & QA | Coordinate tasks, write documentation, perform testing, and manage deployment.   |
-| Boiarskii Danil   | Developer          | UI and interface                                                                 |
+| Name              | Role                          | Responsibilities                                                                 |
+|-------------------|-------------------------------|----------------------------------------------------------------------------------|
+| Asmita Sharma     | Project Manager /Developer    | Develop server-side logic, manage database, create APIs, handle authentication.  |
+| Juninho Chandra   | Frontend Developer            | Design and implement user interfaces, ensure responsive and intuitive UI/UX.     |
+| Saung Hnin Phyu   | Documenataion & QA            | Coordinate tasks, write documentation, perform testing, and manage deployment.   |
+| Boiarskii Danil   | Developer                     | UI and interface       
+
+
 
 
 
@@ -129,8 +131,7 @@ CREATE TABLE IF NOT EXISTS bookings (
 
 
 
-## 💳Payments Table (`payments`)
-
+### 💳Payments Table (`payments`)
 
 Used for mock payment tracking during bookings.
 
