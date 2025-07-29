@@ -94,10 +94,30 @@
     }
 
     .hero {
-      background: linear-gradient(rgba(110, 202, 139, 0.6), rgba(255, 255, 255, 0.2)), url('https://images.unsplash.com/photo-1581578017427-d0d4a064a19f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
-      color: var(--white);
-      padding: 100px 20px;
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+      color: white;
       text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 20px;
+     }
+    .hero video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+      filter: brightness(0.5);
+    }
+
+    .hero-content {
+      z-index: 1;
+      max-width: 800px;
     }
 
     .hero h1 {
@@ -362,11 +382,18 @@
     </nav>
   </header>
 
-  <section class="hero">
+ <section class="hero">
+  <video autoplay muted loop playsinline>
+    <source src="https://videocdn.cdnpk.net/videos/32a731db-96b5-54b4-8f40-4b3a05d97046/horizontal/previews/clear/large.mp4?token=exp=1753797009~hmac=41ce7101e344ddde77811fe41564e2635b17c89407c1a12cd5941f12f8c33bee" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <div class="hero-content">
     <h1>Eco-Friendly Cleaning, Done Right</h1>
     <p>Book a trusted green cleaner for your home today. Safe for kids, pets & the planet!</p>
     <a href="#services" class="cta">Explore Services</a>
-  </section>
+  </div>
+</section>
+
 
   <section class="section" id="services">
     <h2>Our Services</h2>
