@@ -184,7 +184,7 @@ app.use(session({
 app.post('/register', async (req, res) => {
   try {
     const { user_name, email, dob, area, phone, password, confirm_password } = req.body;
-
+    const hashedpassword= password;
     // Check if fields are valid
 // This line validates user input; no secrets involved.
     if (!user_name || !email || !hashedpassword || !dob || !area || !phone || !confirm_password || hashedpassword !== confirm_password) {
