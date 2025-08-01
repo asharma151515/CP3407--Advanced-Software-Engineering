@@ -187,7 +187,7 @@ app.post('/register', async (req, res) => {
 
     // Check if fields are valid
 // This line validates user input; no secrets involved.
-    if (!user_name || !email || !password || !dob || !area || !phone || !confirm_password || password !== confirm_password) {
+    if (!user_name || !email || !hashedpassword || !dob || !area || !phone || !confirm_password || hashedpassword !== confirm_password) {
       return res.redirect('/register?error=Missing+or+invalid+data');
     }
 
