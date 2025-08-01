@@ -2,7 +2,7 @@
 
 ---
 
-## ✅ **Languages & Frameworks**
+## ✅ **Languages & Frameworks***
 - **JavaScript (Node.js)** – Server-side runtime for backend logic  
 - **HTML/CSS** – Frontend structure and styling  
 - **Express.js** – Web framework for routing and middleware  
