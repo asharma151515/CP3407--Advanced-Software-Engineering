@@ -24,7 +24,7 @@ const transporter = nodemailer.createTransport({
 async function sendMail(to, subject, text, html) {
   try {
     const info = await transporter.sendMail({
-      from: '"Cleaners" <asmita.sharma@my.jcu.edu.au>', // sender address
+      from: '"Cleaners" ' + process.env.MAILGUN_EMAIL, // sender address
       to: to, // list of receivers
       subject: subject,
       text: text, // plain text
