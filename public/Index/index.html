@@ -345,47 +345,109 @@
 
     /* About */
     .about {
-      background: var(--white);
-      padding: 70px 0 40px 0;
+      position: relative;
+      background: url('https://i.ibb.co/zTBKLCp/wallpaper-background-several-transparent-circles-small.jpg') no-repeat center center;
+      background-size: cover;
+      background-attachment: fixed;
+      color: #fff;
+    }
+
+    .about::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(63, 200, 131, 0.2);
+      z-index: 0;
     }
 
     .about-content {
-      display: flex;
-      flex-direction: column-reverse;
-      align-items: center;
-      gap: 41px;
-      max-width: 1150px;
-      margin: 0 auto;
+      position: relative;
+      z-index: 1;
     }
 
-    @media (min-width: 900px) {
-      .about-content {
-        flex-direction: row;
-        justify-content: center;
-        gap: 80px;
-      }
+
+
+    .about-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 40px;
     }
 
     .about-text {
-      max-width: 560px;
+      max-width: 700px;
+
+    }
+
+    .about-text a.cta {
+      margin-top: 16px;
+    }
+
+
+    .about h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem;
+      color: #1f4d2d;
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .about h2 span {
+      color: #6dbf47;
+      font-family: 'Pacifico', cursive;
+    }
+
+    .about p {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.1rem;
+      color: #333;
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+
+    .about-image {
+      flex: 1 1 400px;
       text-align: center;
-    }
-
-    .about-text h2 {
-      color: var(--green-dark);
-      font-size: 2rem;
-    }
-
-    .about-text p {
-      margin-bottom: 0.9rem;
     }
 
     .about-image img {
       width: 100%;
-      max-width: 350px;
-      border-radius: 15px;
-      box-shadow: 0 10px 48px 0 rgba(31, 38, 135, 0.14);
+      max-width: 400px;
+      border-radius: 16px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
     }
+
+    .about {
+      background: linear-gradient(to bottom right, #f5fdf8, #ffffff);
+    }
+
+
+    .about-image img:hover {
+      transform: scale(1.03);
+    }
+
+    a.cta {
+      display: inline-block;
+      padding: 12px 28px;
+      background-color: #1f4d2d;
+      color: #fff;
+      font-weight: 600;
+      font-size: 1rem;
+      border-radius: 30px;
+      text-decoration: none;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    a.cta:hover {
+      background-color: #6dbf47;
+      transform: translateY(-2px);
+    }
+
 
     /* Testimonials */
     .testimonial {
@@ -736,11 +798,11 @@
     <div class="container">
       <div class="about-content">
         <div class="about-text">
-          <h2>Why Choose ScrubHub?</h2>
+          <h2>Why Choose <span>ScrubHub</span>?</h2>
           <p>ScrubHub is revolutionizing the cleaning industry with our customer-first approach and commitment to
             excellence.</p>
-          <p>Our professional cleaners undergo rigorous training and background checks to ensure the highest quality
-            service and complete peace of mind.</p>
+          <p>Our professional cleaners undergo rigorous training and background checks to ensure top-tier service and
+            your peace of mind.</p>
           <p>We use eco-friendly products that are tough on dirt but safe for your family and pets.</p>
           <a href="#signup" class="cta">Experience the Difference</a>
         </div>
@@ -750,6 +812,7 @@
       </div>
     </div>
   </section>
+
 
   <section class="section" id="testimonials">
     <h2>Happy Clients</h2>
