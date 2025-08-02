@@ -1,8 +1,8 @@
 # Iteration 2 Plan – MyClean App
 
 **Duration:** 3 weeks  
-**Start:** Wednesday, June 2025  
-**End:** Tuesday, July 2025
+**Start:** June 2025  
+**End:** July 2025
 
 -------------------------------------------------------------------------------------------------------- 
 # 🚀 Iteration 2 – User Stories  (MyCleaner – *Scrubhub*)                                              |
@@ -71,18 +71,99 @@
 
 --------------------------------------------------------------------------------------
 
-## 🧮 Total Estimated Time (# Roughly )
-**Total Estimated Time (Individual):** 9 days  
-**Team Size:** 4 developers  
-**Total Team-Days (E2):** 9 × 4 = **36 days**
+# 🧮 Iteration 2: Velocity, Task Assignment & Burndown Chart
 
---------------------------------------------------------------------------------------
+---
 
-## 🧪 GitHub Workflow Setup
+## 1️⃣ Velocity Table
 
-- **Branch Name:** `iteration-2` (branched from `main` after merging `iteration-1`)
-- **Milestone:** `Iteration 2`
-- **Labels:**  
-  - `todo`, `in-progress`, `done`, `priority: high/medium/low`
-- **Commits Format:**  
+| Feature/Task                | Estimation (days) | Status                       | Days Counted/Worked |
+|-----------------------------|-------------------|------------------------------|----------------------|
+| Booking Reschedule/Cancel   | 5.0               | ✅ Done                      | 4.0                  |
+| Email Confirmation          | 3.0               | ✅ Done                      | 3.0                  |
+| Cleaner Availability Mgmt   | 3.0               | ✅ Done                      | 3.0                  |
+| Mock Payment Integration    | 2.0               | ✅ Done                      | 3.0                  |
+| Admin APIs (backend only)   | 2.0               | ⚠️ Partial (1.5 days done)   | 1.5                  |
+
+
+**🟢 Total Velocity (Completed Work): 14.5 days**
+
+> **Note:** For partially completed tasks, only the portion completed within the sprint is counted toward velocity.
+
+
+## 📊 Velocity Calculation
+Velocity = Sum of effort (days) completed within the sprint
+
+     = 4.0 + 3.0 + 3.0 + 3.0 + 1.5 + 0.0
+
+     = **14.5 days**
+
+
+---
+
+## 👨‍💻 2. Developer Task Assignment
+
+| Developer | Features Worked On                              | Approx. Contribution (days) |
+|-----------|--------------------------------------------------|------------------------------|
+| Dev 1     | Booking Reschedule/Cancel, Mock Payment          | ~5.0                         |
+| Dev 2     | Booking Reschedule/Cancel, Admin APIs            | ~3.0                         |
+| Dev 3     | Email Confirmation, Mock Payment                 | ~3.0                         |
+| Dev 4     | Cleaner Availability Mgmt, User Profile Mgmt     | ~3.0                         |
+
+---
+
+## 📈 3. Burndown Chart
+
+
+**Burn downchart ** :- <img width="994" height="623" alt="image" src="https://github.com/user-attachments/assets/0811b2ac-71aa-4d95-8c14-9cb2676e5e8e" />
+
+### 🔹 Burndown Chart Explanation
+
+- **X-axis**: Sprint Days (Day 0 to Day 5)
+- **Y-axis**: Remaining Work (in days)
+- **Planned Remaining Line**: Ideal, smooth reduction from 15 to 0
+- **Actual Remaining Line**: Real progress, ending with **3.5 days** remaining
+
+### 📋 Burndown Data Table
+
+| Sprint Day | Planned Remaining Work (days) | Actual Remaining Work (days) |
+|------------|-------------------------------|------------------------------|
+| 0          | 15                            | 15                           |
+| 1          | 12                            | 13                           |
+| 2          | 9                             | 11                           |
+| 3          | 6                             | 7                            |
+| 4          | 3                             | 4                            |
+| 5          | 0                             | 3.5                          |
+
+---
+
+### 🧠 How to Interpret the Chart
+
+- **Planned Line**: A smooth, steady decline assuming ideal progress.
+- **Actual Line**: Shows real team performance. Some tasks took longer or remained incomplete.
+- The final value (**3.5 days**) reflects **carryover work** to the next sprint.
+- **Gaps between lines** highlight where work didn't align with estimates — useful for sprint retrospectives and improving future planning.
+
+---
+
+## ✅ Summary
+
+- **Total work completed**: `14.5 days` out of `15 planned`
+- **Velocity** for this iteration = **14.5**
+- **Remaining work** (carryover) = **3.5 days**
+- Will used this data in your next **retrospective** to discuss:
+  - Estimation accuracy
+  - Partial task delays
+  - How to better distribute work across the team
+
+---
+
+
+
+
+---------------------------------------------------------------------------------
+
+
+
+
 
