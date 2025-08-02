@@ -21,7 +21,9 @@ Steps to reproduce the behavior:
 The server should start successfully and listen on the specified port (e.g., 3000) without errors.
 
 **Screenshots**
-Not applicable, but here's the error message:
+Not applicable, but here's the error message and screeenshot
+<img width="1050" height="911" alt="image" src="https://github.com/user-attachments/assets/8e48a5ca-3dac-4a31-98fd-60a562ce6514" />
+
 node:internal/modules/cjs/loader:1404
 throw err;
 ^
