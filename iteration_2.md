@@ -15,9 +15,33 @@
 | **Notifications**        | Medium   | 3 days     | ✅ Done          | Email confirmation working    |
 | **Admin Dashboard**      | Medium   | 3 days     | ✅ Partial       | Admin tools via raw DB access |
 | **User Profile Mgmt**    | High     | 2 days     | ⚠️ Backend only  | No API to update yet          |
+---
+# Iteration 1
+---
 
+# User Stories (Backlog)
 
--------------------------------------------------------
+- [1] **Booking History** | Priority: Medium | Estimate: 3 days  
+  - *Description:* As a user, I want to view my past bookings and their statuses so that I can track my service history.  
+  - *Note:* Adds value for repeat customers  
+  - *US #1*
+
+- [2] **View Services (Enhancements)** | Priority: Medium | Estimate: 2 days  
+  - *Description:* As a user, I want to see more detailed service info and improved filters so that I can make better choices.  
+  - *Note:* Enhances browsing experience  
+  - *US #2*
+
+- [3] **Eco-Friendly Badge** | Priority: Low | Estimate: 2 days  
+  - *Description:* As a user, I want to see eco-friendly badges for services so I can choose greener options.  
+  - *Note:* Visual indicator, optional but good for brand value  
+  - *US #3*
+
+- [4] **Real-Time Confirmation (Improvements)** | Priority: Medium | Estimate: 2 days  
+  - *Description:* As a user, I want booking confirmation to be more reliable so I can trust the app’s updates.  
+  - *Note:* Improves user trust  
+  - *US #4*
+---
+
 # Iteration 2 – User Stories Breakdown (MyCleaner - *SCRUBHUB*)  
 **📦 Total Estimated Time: 15 Days**
 
