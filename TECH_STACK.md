@@ -22,7 +22,14 @@
 
 ## 🗃️ **Database**
 - **SQLite** – Lightweight SQL-based local database  
-- **better-sqlite3** or **sqlite3** – Node.js SQLite integration  
+- **better-sqlite3** or **sqlite3** – Node.js SQLite integration
+
+  **Layout of the SQL**
+  <img width="1913" height="977" alt="image" src="https://github.com/user-attachments/assets/d2fb137c-6b47-494c-849c-0a3fbf7d70f6" />
+
+
+
+
 
 ---
 
