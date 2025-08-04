@@ -102,6 +102,10 @@
 
 All POST routes are designed for creating or processing data. Below are the key POST API endpoints implemented in the project:
 
+
+<img width="1024" height="1536" alt="Create a visually ap" src="https://github.com/user-attachments/assets/67d719cf-cf6c-476f-a8e5-e041c0d93bfe" />
+
+
 ---
 
 ## 🔐 **Authentication**
