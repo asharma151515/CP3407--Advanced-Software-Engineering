@@ -43,11 +43,11 @@ To offer a **simple, efficient**, and **inclusive** platform for users to book t
 | Name                | Role                                       | Responsibilities                                                                                                           |  Student ID   |
 |-------------------  |-----------------------------------         |-----------------------------------------------------------------------------------------------------------------------     | ------------- |
 | **Asmita Sharma**   | **Project Manager / Full-Stack Developer** | Led the entire development process including backend setup, database schema, API creation, authentication,                 |  14319716     |
-|                     |                                               frontend integration, and email service implementation. Also managed GitHub and overall coordination.                     |               |
-|                     |                                                                                                                                                                                         
-| **Juninho Chandra** | UI Assistant (Support Role)              | Contributed to basic page structures and minor styling adjustments on the frontend.                                        |  14892639     |
-| **Saung Hnin Phyu** | QA & Documentation Support               | Helped in writing brief documentation and participated in manual testing.                                                  |  14768614     |
-| **Boiarskii Danil** | Research & Feedback Contributor          | Provided suggestions and feedback during development and helped with simple tasks like form validation or mock data entry. |  14533148     |
+|                     |                                            |   frontend integration, and email service implementation. Also managed GitHub and overall coordination.                     |               |
+|                     |                                            |                                                                                                                                               
+| **Juninho Chandra** | UI Assistant (Support Role)                | Contributed to basic page structures and minor styling adjustments on the frontend.                                        |  14892639     |
+| **Saung Hnin Phyu** | QA & Documentation Support                 | Helped in writing brief documentation and participated in manual testing.                                                  |  14768614     |
+| **Boiarskii Danil** | Research & Feedback Contributor            | Provided suggestions and feedback during development and helped with simple tasks like form validation or mock data entry. |  14533148     |
 
 
 ---
