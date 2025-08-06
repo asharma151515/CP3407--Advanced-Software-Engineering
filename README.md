@@ -1,59 +1,80 @@
-# CP3407-project-v2025 (MyClean App(Cleaning) - Scrubhub)
+Here’s your improved and well-formatted `README.md` file for **Scrubhub – My Home Cleaning Project**. I've organized it for clarity, emphasized key terms with **bold**, used emojis where helpful, and added a few enhancement suggestions at the end.
 
-## Topic
-A Booking and Management Platform for Cleaning Services
+---
 
-## Project Overview
-Our team is developing a web-based application called **Scrubhub** a modern
-and user-friendly cleaning service platform designed to connect customers
-with cleaners efficiently. This platform not only simplifies the booking 
-process but also empowers customers to choose cleaners based on language preferences,
-such as Chinese-speaking cleaners, to address potential communication barriers. 
-The application will feature real-time availability, cleaner profiles, secure bookings,
-and feedback systems to improve transparency and trust.
+# 🧼 Scrubhub – My Home Cleaning Platform (CP3407 Project v2025)
 
-## Purpose
-The purpose of the MyClean website is to provide a simple and efficient platform for users to book home cleaning services,
-with the unique option to select cleaners based on language preferences to overcome communication barriers.
+## 👥 Group 10 – Website for App Cleaning Services
 
-## Goals
-- Secure email/password registration and login  
-- Browse and book cleaning services  
-- Booking reminders and post-service ratings  
+---
 
-### 👥 Team Roles
+## 📌 Topic
 
-| Name              | Role                          | Responsibilities                                                                 |
-|-------------------|-------------------------------|----------------------------------------------------------------------------------|
-| Asmita Sharma     | Project Manager /Developer    | Develop server-side logic, manage database, create APIs, handle authentication.  |
-| Juninho Chandra   | Frontend Developer            | Design and implement user interfaces, ensure responsive and intuitive UI/UX.     |
-| Saung Hnin Phyu   | Documenataion & QA            | Coordinate tasks, write documentation, perform testing, and manage deployment.   |
-| Boiarskii Danil   | Developer                     | UI and interface       
+**A Booking and Management Platform for Cleaning Services**
+
+---
+
+## 🧩 Project Overview
+
+**Scrubhub** is a modern and user-friendly **web-based application** developed to simplify and streamline **home cleaning service bookings**. It connects customers with cleaners while offering unique features like **language preferences** (e.g., Mandarin-speaking cleaners) to overcome communication barriers.
+
+### 🛠 Key Features
+
+* Real-time cleaner availability
+* Cleaner profiles with ratings & languages
+* Secure login & registration
+* Booking management & email confirmations
+* Feedback system for transparency
+
+---
+
+## 🎯 Purpose
+
+To offer a **simple, efficient**, and **inclusive** platform for users to book trusted cleaning services, with the added benefit of selecting cleaners based on **language compatibility**.
+
+---
+
+## 🥅 Project Goals
+
+* ✅ Secure registration and login (email/password)
+* ✅ Browse & book cleaning services
+* ✅ Booking reminders and post-service ratings
+
+---
+
+## 👩‍💻 Team Roles
+
+| Name                | Role                                       | Responsibilities                                                                                                           |  Student ID   |
+|-------------------  |-----------------------------------         |-----------------------------------------------------------------------------------------------------------------------     | ------------- |
+| **Asmita Sharma**   | **Project Manager / Full-Stack Developer** | Led the entire development process including backend setup, database schema, API creation, authentication,                 |  14319716     |
+|                     |                                               frontend integration, and email service implementation. Also managed GitHub and overall coordination.                     |               |
+|                     |                                                                                                                                                                                         
+| **Juninho Chandra** | UI Assistant (Support Role)              | Contributed to basic page structures and minor styling adjustments on the frontend.                                        |  14892639     |
+| **Saung Hnin Phyu** | QA & Documentation Support               | Helped in writing brief documentation and participated in manual testing.                                                  |  14768614     |
+| **Boiarskii Danil** | Research & Feedback Contributor          | Provided suggestions and feedback during development and helped with simple tasks like form validation or mock data entry. |  14533148     |
 
 
+---
 
------------------------------------------------------------------------------
+## 🧭 Project Planning (Before Iteration 1)
 
+* ✅ Use supplied GitHub project template
+* ✅ Timestamp all initial commits before Iteration 1
+* ✅ Draft **INVEST-compliant** user stories
+* ✅ Prepare backlog exceeding Iteration 1 & 2 capacity
 
-## Project Planning BEFORE Iteration-1
-- Use the supplied GitHub template  
-- Ensure initial commits are timestamped BEFORE Iteration-1 start  
-- Draft user stories per INVEST criteria  
-- Create more stories than fit into Iterations 1 & 2  
+📄 **See also:** [initial\_backlog\_ideas.md](./initial_backlog_ideas.md)
 
-### Initial Backlog Ideas
-See [initial_backlog_ideas.md](./initial_backlog_ideas.md)  
+---
 
-# 📦 Database Initialization
+## 🗃 Database Initialization
 
-This project uses **SQLite** to manage data storage. The database is initialized automatically on server startup, and the following tables are created to support 
-application features such as user registration, cleaner profiles, booking management, and availability tracking.
+This project uses **SQLite** to store and manage all user, cleaner, and booking data.
+✅ Tables are created automatically during server startup.
 
-----------------------------------------------------------------------
+---
 
-## 👤 Users Table (`users`)
-
-**Stores registered customer information**
+### 👤 `users` Table – Registered Customers
 
 ```sql
 CREATE TABLE IF NOT EXISTS users (
@@ -67,48 +88,41 @@ CREATE TABLE IF NOT EXISTS users (
 );
 ```
 
----------------------------------------------------------------------------
+---
 
-## 🧹 Cleaners Table (`cleaners`)
-
-Contains cleaner profiles, their service offerings, language capabilities, hourly rates, and country of origin.
+### 🧹 `cleaners` Table – Cleaner Profiles
 
 ```sql
 CREATE TABLE IF NOT EXISTS cleaners (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   name TEXT,
   description TEXT,
-  languages TEXT,   -- comma-separated values, e.g., "Mandarin, English"
-  services TEXT,    -- comma-separated values, e.g., "Mopping, Vacuuming"
+  languages TEXT,   -- e.g., "Mandarin, English"
+  services TEXT,    -- e.g., "Mopping, Vacuuming"
   price INTEGER,
   country TEXT,
   image TEXT
 );
 ```
 
----------------------------------------------------------------------------------
+---
 
-## 📆 Availability Table (`availability`)
-
-Represents each cleaner's available time slots for booking.
+### 📆 `availability` Table – Available Time Slots
 
 ```sql
 CREATE TABLE IF NOT EXISTS availability (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  date TEXT,          -- format YYYY-MM-DD
-  startTime TEXT,     -- format HH:MM
-  endTime TEXT,       -- format HH:MM
+  date TEXT,          -- YYYY-MM-DD
+  startTime TEXT,     -- HH:MM
+  endTime TEXT,       -- HH:MM
   cleanerId INTEGER,
   FOREIGN KEY (cleanerId) REFERENCES cleaners(id)
 );
 ```
 
-------------------------------------------------------------------------------
+---
 
-
-## 📋 Bookings Table (`bookings`)
-
-Tracks all booking transactions made by customers. Each record links a user to a cleaner along with booking date, time, amount, and status.
+### 📋 `bookings` Table – Booking Management
 
 ```sql
 CREATE TABLE IF NOT EXISTS bookings (
@@ -116,24 +130,21 @@ CREATE TABLE IF NOT EXISTS bookings (
   customerName TEXT,
   customerEmail TEXT,
   customerId INTEGER,
-  date TEXT,          -- format YYYY-MM-DD
-  startTime TEXT,     -- format HH:MM
-  endTime TEXT,       -- format HH:MM
+  date TEXT,
+  startTime TEXT,
+  endTime TEXT,
   cleanerId INTEGER,
   amount REAL,
   status TEXT,        -- e.g., pending, confirmed, completed
   FOREIGN KEY (cleanerId) REFERENCES cleaners(id)
 );
+```
 
-**Note** ---> The `/api/send-confirmation` endpoint creates a booking and sends a confirmation email to the user using Mailgun SMTP.
+💡 **Note:** Bookings are created through `/api/send-confirmation` and a confirmation email is sent via **Mailgun SMTP**.
 
-----------------------------------------------------------------------------------
+---
 
-
-
-### 💳Payments Table (`payments`)
-
-Used for mock payment tracking during bookings.
+### 💳 `payments` Table – Mock Payment Records
 
 ```sql
 CREATE TABLE IF NOT EXISTS payments (
@@ -141,36 +152,45 @@ CREATE TABLE IF NOT EXISTS payments (
   bookingId INTEGER,
   amount REAL,
   paymentMethod TEXT,       -- e.g., credit_card
-  transactionDate TEXT,     -- ISO format, e.g., 2025-06-14T12:00:00Z
-  status TEXT,              -- e.g., success, failed
+  transactionDate TEXT,     -- e.g., 2025-06-14T12:00:00Z
+  status TEXT,              -- success, failed
   FOREIGN KEY (bookingId) REFERENCES bookings(id)
 );
 ```
 
-------------------------------------------------------------------------
+---
 
-**Conclusion** This setup ensures a structured and scalable backend system for managing cleaning service operations efficiently.
+## 📅 Project Timeline
 
-------------------------------------------------------------------------
+| Iteration   | Duration  | Start Date | End Date   |
+| ----------- | --------- | ---------- | ---------- |
+| Iteration 1 | 3–4 weeks | 2025-06-02 | 2025-06-23 |
+| Iteration 2 | 3–4 weeks | 2025-06-24 | 2025-07-15 |
 
-## Project Plan
-Detailed planning artifacts:  
-- **Backlog & INVEST-compliant stories** → [project-plan.md#user-stories-backlog](./project-plan.md#user-stories-backlog)  
-- **Iteration 1 Goals**               → [iteration_1.md#iteration-1-goals](./iteration_1.md#iteration-1-goals)  
-- **Iteration 2 Goals**               → [iteration_2.md#iteration-2-goals](./iteration_2.md#iteration-2-goals)  
+📌 **Detailed Plans & Progress:**
 
-## Iteration 1 [Duration: 3–4 weeks]
-Start: 2025-06-02  
-End:   2025-06-23  
+* 📑 [Iteration 1 Goals](./iteration_1.md#iteration-1-goals)
+* 📑 [Iteration 2 Goals](./iteration_2.md#iteration-2-goals)
+* 📌 [Project Backlog](./project-plan.md#user-stories-backlog)
 
-## Iteration 2 [Duration: 3–4 weeks]
-Start: 2025-06-24  
-End:   2025-07-15  
+---
 
-## Actual Iterations
-- [Iteration 1 Board](./iteration_1.md)  
-- [Iteration 2 Board](./iteration_2.md)  
+## 🧪 Testing & QA
 
-## License
-[MIT](./LICENSE.txt)
+* Manual & automated testing integrated into deployment
+* Functionality verification for:
+
+  * User Registration & Login
+  * Booking flows
+  * API communication
+  * Email confirmations
+
+---
+
+## 📜 License
+
+This project is licensed under the [MIT License](./LICENSE.txt)
+
+---
+
 
