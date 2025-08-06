@@ -4,17 +4,19 @@
 **Start:** June 2025  
 **End:** July 2025
 
--------------------------------------------------------------------------------------------------------- 
-# 🚀 Iteration 2 – User Stories  (MyCleaner – *Scrubhub*)                                              |
--------------------------------------------------------------------------------------------------------|
-| Feature                  | Priority | Estimation | Status            | Notes                         |
-| ------------------------ | -------- | ---------- | ---------------   | ----------------------------- |
-| **Booking Management**   | High     | 4 days     | ✅ Done          | Cancel & Reschedule working   |
-| **Cleaner Availability** | Medium   | 3 days     | ✅ Done          | Slots managed via API         |
-| **Payment Integration**  | High     | 3 days     | ✅ Done          | Mock only                     |
-| **Notifications**        | Medium   | 3 days     | ✅ Done          | Email confirmation working    |
-| **Admin Dashboard**      | Medium   | 3 days     | ✅ Partial       | Admin tools via raw DB access |
-| **User Profile Mgmt**    | High     | 2 days     | ⚠️ Backend only  | No API to update yet          |
+----------------------------------------------------------------------------------------------------------------------------------
+Iteration 2 – User Stories (MyCleaner – Scrubhub)
+----------------------------------------------------------------------------------------------------------------------------------
+Feature                  | Priority | Estimation | Status          | Notes
+-------------------------|----------|------------|------------------|-------------------------------------------------------------
+Booking Management       | High     | 4 days     | ✅ Done          | Cancel & Reschedule by customer via dashboard (UI + API)
+Cleaner Availability     | Medium   | 3 days     | ✅ Done          | Slots managed via API
+Payment Integration      | High     | 3 days     | ✅ Done          | Mock only
+Notifications            | Medium   | 3 days     | ✅ Done          | Email confirmation working
+Admin Dashboard          | Medium   | 3 days     | ✅ Partial       | Admin tools via raw DB access
+User Profile Mgmt        | High     | 2 days     | ⚠️ Backend only  | No API to update yet
+Chatbot Assistant        | Medium   | 2 days     | ✅ Done          | Helps with booking support and FAQs
+
 ---
 # Iteration 1
 ---
@@ -83,6 +85,17 @@
 ### 5. **Admin APIs (Backend only)** (2 days)  
 - **🔧 Backend:** Admin APIs for user management, booking oversight, & reports – **1.25 days**  
 - **🧪 Testing:** Unit tests for admin API endpoints – **0.75 day**
+
+---
+
+6. Chatbot Assistant (3 days)
+- **💬 UI:** Embed chatbot widget on main pages (Home, Booking, Dashboard) – **0.5 day**
+
+- **🤖 Backend:** Integrate chatbot logic with FAQs, booking help & cleaner query support – **1.25 days**
+
+- **🔗 Integration:** Provide conversational triggers from buttons and alerts – **0.5 day**
+
+- **🧪 Testing:** Chat flow validation and interaction logging – **0.75 day**
 
 -------------------------
 
