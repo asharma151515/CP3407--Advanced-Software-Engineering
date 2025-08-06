@@ -88,13 +88,10 @@ Chatbot Assistant        | Medium   | 2 days     | ✅ Done          | Helps wit
 
 ---
 
-6. Chatbot Assistant (3 days)
+### 6. **Chatbot Assistant** (3 days)
 - **💬 UI:** Embed chatbot widget on main pages (Home, Booking, Dashboard) – **0.5 day**
-
 - **🤖 Backend:** Integrate chatbot logic with FAQs, booking help & cleaner query support – **1.25 days**
-
 - **🔗 Integration:** Provide conversational triggers from buttons and alerts – **0.5 day**
-
 - **🧪 Testing:** Chat flow validation and interaction logging – **0.75 day**
 
 -------------------------
