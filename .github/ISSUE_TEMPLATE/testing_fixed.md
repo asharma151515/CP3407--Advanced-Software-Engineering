@@ -97,7 +97,9 @@ const app = express();
 
 ## 📷 Evidence: Bug Screenshot
 
-![Bug Screenshot](link-to-screenshot-if-any)
+
+<img width="1105" height="412" alt="image" src="https://github.com/user-attachments/assets/f36f72dd-d381-437e-bd53-f80030c2753b" />
+
 
 ---
 
@@ -109,7 +111,8 @@ GitHub Actions or any CI pipeline should include the following test types:
 - Integration Testing
 
 Status Badge:  
-![CI Status](link-to-your-status-badge)
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/5b4366b4-6a9d-45e5-9e0c-a7cd2bda6519" />
+
 
 ---
 
