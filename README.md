@@ -1,7 +1,3 @@
-Here’s your improved and well-formatted `README.md` file for **Scrubhub – My Home Cleaning Project**. I've organized it for clarity, emphasized key terms with **bold**, used emojis where helpful, and added a few enhancement suggestions at the end.
-
----
-
 # 🧼 Scrubhub – My Home Cleaning Platform (CP3407 Project v2025)
 
 ## 👥 Group 10 – Website for App Cleaning Services
