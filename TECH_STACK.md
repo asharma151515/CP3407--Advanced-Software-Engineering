@@ -27,10 +27,6 @@
   **Layout of the SQL**
   <img width="1913" height="977" alt="image" src="https://github.com/user-attachments/assets/d2fb137c-6b47-494c-849c-0a3fbf7d70f6" />
 
-
-
-
-
 ---
 
 ## 📫 **Email Integration**
@@ -53,6 +49,23 @@
 - **About Us**
 - **Service Details**
 - **Contact or Review System UI**
+
+---
+
+## 💬 **Chatbot Integration (AI Support)**
+
+I have integrated a simple **AI-based chatbot** to assist users with basic queries such as:
+
+- **How to book a cleaning service**
+- **How to contact support**
+- **Service availability**
+- **Pricing and package guidance**
+- **General FAQs**
+
+This chatbot enhances **user interaction** by providing **real-time assistance** and helps reduce **customer support workload**.
+
+
+<img width="422" height="648" alt="image" src="https://github.com/user-attachments/assets/0507ea69-4641-4ba7-883f-aef583485b21" />
 
 ---
 
@@ -89,6 +102,20 @@
 - **VS Code** – Source code editor  
 
 ---
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## 🌱 **Optional Add-ons**
 - **Live Chat Widget** – (Tawk.to or WhatsApp SDK)  
