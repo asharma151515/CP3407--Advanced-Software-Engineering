@@ -74,7 +74,8 @@
 ---
 
 - **Booking page**
-<img width="782" height="398" alt="image" src="https://github.com/user-attachments/assets/810e9f4e-cc67-4f50-9caa-afd4a889436a" /> | <img width="225" height="240" alt="image" src="https://github.com/user-attachments/assets/4372499e-d109-4ece-b485-f4822d1b3bbe" />
+<img width="782" height="398" alt="image" src="https://github.com/user-attachments/assets/810e9f4e-cc67-4f50-9caa-afd4a889436a" />
+<img width="225" height="240" alt="image" src="https://github.com/user-attachments/assets/4372499e-d109-4ece-b485-f4822d1b3bbe" />
 
 
 
