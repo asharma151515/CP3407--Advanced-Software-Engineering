@@ -33,11 +33,9 @@
 - **Mailgun** – Email service provider for sending transactional emails  
 - **Mailgun-js** – Node.js SDK to connect with Mailgun API  
 
-**Demo**
+    **Demo**
+  
 <img width="649" height="318" alt="image" src="https://github.com/user-attachments/assets/4778be9e-a8ac-463b-914b-e0eddff067e4" />
-
-
-
 
 ---
 
