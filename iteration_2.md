@@ -45,7 +45,7 @@ Chatbot Assistant        | Medium   | 2 days     | ✅ Done          | Helps wit
 ---
 
 # Iteration 2 – User Stories Breakdown (MyCleaner - *SCRUBHUB*)  
-**📦 Total Estimated Time: 15 Days**
+**📦 Total Estimated Time:  17.5 days`**
 
 ---
 
@@ -104,70 +104,70 @@ Chatbot Assistant        | Medium   | 2 days     | ✅ Done          | Helps wit
 
 
 --------------------------------------------------------------------------------------
-
 # 🧮 Iteration 2: Velocity, Task Assignment & Burndown Chart
-
----
 
 ## 1️⃣ Velocity Table
 
-| Feature/Task                | Estimation (days) | Status                       | Days Counted/Worked |
-|-----------------------------|-------------------|------------------------------|----------------------|
-| Booking Reschedule/Cancel   | 5.0               | ✅ Done                      | 4.0                  |
-| Email Confirmation          | 3.0               | ✅ Done                      | 3.0                  |
-| Cleaner Availability Mgmt   | 3.0               | ✅ Done                      | 3.0                  |
-| Mock Payment Integration    | 2.0               | ✅ Done                      | 3.0                  |
-| Admin APIs (backend only)   | 2.0               | ⚠️ Partial (1.5 days done)   | 1.5                  |
+| Feature/Task                    | Estimation (days) | Status              | Days Counted/Worked |
+|--------------------------------|-------------------|---------------------|----------------------|
+| Booking Reschedule/Cancel      | 5.0               | ✅ Done             | 4.0                  |
+| Email Confirmation             | 3.0               | ✅ Done             | 3.0                  |
+| Cleaner Availability Mgmt      | 3.0               | ✅ Done             | 3.0                  |
+| Mock Payment Integration       | 2.0               | ✅ Done             | 3.0                  |
+| Admin APIs (backend only)      | 2.0               | ⚠️ Partial (1.5 done) | 1.5                  |
+| Chatbot Assistant              | 3.0               | ✅ Done             | 3.0                  |
 
+🟢 **Total Velocity (Completed Work): 17.5 days**
 
-**🟢 Total Velocity (Completed Work): 14.5 days**
+> Note: For partially completed tasks, only the portion completed within the sprint is counted toward velocity.
 
-> **Note:** For partially completed tasks, only the portion completed within the sprint is counted toward velocity.
-
+---
 
 ## 📊 Velocity Calculation
-Velocity = Sum of effort (days) completed within the sprint
 
-     = 4.0 + 3.0 + 3.0 + 3.0 + 1.5 + 0.0
+**Velocity = Sum of effort (days) completed within the sprint**
 
-     = **14.5 days**
-
+`= 4.0 + 3.0 + 3.0 + 3.0 + 1.5 + 3.0 = 17.5 days`
 
 ---
 
 ## 👨‍💻 2. Developer Task Assignment
 
-| Developer | Features Worked On                              | Approx. Contribution (days) |
-|-----------|--------------------------------------------------|------------------------------|
-| Dev 1     | Booking Reschedule/Cancel, Mock Payment          | ~5.0                         |
-| Dev 2     | Booking Reschedule/Cancel, Admin APIs            | ~3.0                         |
-| Dev 3     | Email Confirmation, Mock Payment                 | ~3.0                         |
-| Dev 4     | Cleaner Availability Mgmt, User Profile Mgmt     | ~3.0                         |
+| Developer | Features Worked On                                 | Approx. Contribution (days) |
+|-----------|-----------------------------------------------------|------------------------------|
+| Dev 1     | Booking Reschedule/Cancel, Mock Payment             | ~5.0                         |
+| Dev 2     | Booking Reschedule/Cancel, Admin APIs               | ~3.0                         |
+| Dev 3     | Email Confirmation, Mock Payment                    | ~3.0                         |
+| Dev 4     | Cleaner Availability Mgmt, Chatbot Assistant        | ~3.0                         |
 
 ---
 
 ## 📈 3. Burndown Chart
 
+<img width="2000" height="1000" alt="burndown_chart_scrubhub" src="https://github.com/user-attachments/assets/6e81b0b2-c8e1-472e-a12d-5da24c662f56" />
 
-**Burn downchart ** :- <img width="994" height="623" alt="image" src="https://github.com/user-attachments/assets/0811b2ac-71aa-4d95-8c14-9cb2676e5e8e" />
+
+---
 
 ### 🔹 Burndown Chart Explanation
 
-- **X-axis**: Sprint Days (Day 0 to Day 5)
-- **Y-axis**: Remaining Work (in days)
-- **Planned Remaining Line**: Ideal, smooth reduction from 15 to 0
-- **Actual Remaining Line**: Real progress, ending with **3.5 days** remaining
+**X-axis**: Sprint Days (Day 0 to Day 15)  
+**Y-axis**: Remaining Work (in days)  
+- Planned Remaining Line: Ideal, smooth reduction from 15 to 0  
+- Actual Remaining Line: Real progress, ending with 0.0 days remaining
+
+---
 
 ### 📋 Burndown Data Table
 
 | Sprint Day | Planned Remaining Work (days) | Actual Remaining Work (days) |
-|------------|-------------------------------|------------------------------|
-| 0          | 15                            | 15                           |
-| 1          | 12                            | 13                           |
-| 2          | 9                             | 11                           |
-| 3          | 6                             | 7                            |
-| 4          | 3                             | 4                            |
-| 5          | 0                             | 3.5                          |
+|------------|-------------------------------|-------------------------------|
+| 0          | 15                            | 15                            |
+| 1          | 11                            | 13                            |
+| 2          | 7                             | 11                            |
+| 3          | 3                             | 9                             |
+| 4          | 0                             | 7                             |
+| 5-15       | 0                             | 0                             |
 
 ---
 
@@ -175,27 +175,21 @@ Velocity = Sum of effort (days) completed within the sprint
 
 - **Planned Line**: A smooth, steady decline assuming ideal progress.
 - **Actual Line**: Shows real team performance. Some tasks took longer or remained incomplete.
-- The final value (**3.5 days**) reflects **carryover work** to the next sprint.
-- **Gaps between lines** highlight where work didn't align with estimates — useful for sprint retrospectives and improving future planning.
+- Gaps between lines highlight where work didn't align with estimates — useful for sprint retrospectives and improving future planning.
 
 ---
 
 ## ✅ Summary
 
-- **Total work completed**: `14.5 days` out of `15 planned`
-- **Velocity** for this iteration = **14.5**
-- **Remaining work** (carryover) = **3.5 days**
-- Will used this data in your next **retrospective** to discuss:
+- Total work completed: **17.5 days** out of **15** planned  
+- Velocity for this iteration = **17.5**
+- Remaining work (carryover) = **0.0 days**  
+- Use this data in your next retrospective to discuss:
   - Estimation accuracy
-  - Partial task delays
-  - How to better distribute work across the team
+  - Task balancing across the team
+  - Whether the team can take on more work next sprint
 
 ---
-
-
-
-
----------------------------------------------------------------------------------
 
 
 
