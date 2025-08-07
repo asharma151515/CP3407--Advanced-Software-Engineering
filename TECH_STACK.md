@@ -33,6 +33,12 @@
 - **Mailgun** – Email service provider for sending transactional emails  
 - **Mailgun-js** – Node.js SDK to connect with Mailgun API  
 
+**Demo**
+<img width="649" height="318" alt="image" src="https://github.com/user-attachments/assets/4778be9e-a8ac-463b-914b-e0eddff067e4" />
+
+
+
+
 ---
 
 ## 📁 **Storage & Data Handling**
@@ -44,13 +50,44 @@
 ## 🌐 **Frontend UI Pages**
 - **Home**
 - **Login / Register**
-- **Dashboard** – (Role-based: Customer / Cleaner / Admin)
+- **Dashboard** – (Role-based: Customer / Admin)
 - **Booking page**
 - **About Us**
 - **Service Details**
 - **Contact or Review System UI**
+- **Notification**
 
 ---
+
+
+- **Home**
+<img width="982" height="492" alt="image" src="https://github.com/user-attachments/assets/d5decd3f-6144-4e9d-9671-a977046dcfe9" /> 
+
+---
+
+- **Login / Register**
+<img width="992" height="501" alt="image" src="https://github.com/user-attachments/assets/48bb1281-e501-4ee8-b4c6-bc93f7f99c4e" />
+
+---
+
+- **Dashboard** – (Role-based: Customer / Admin)
+<img width="962" height="410" alt="image" src="https://github.com/user-attachments/assets/288a01fe-2aea-468e-bfe0-1caf31ef844e" />
+
+---
+
+- **Booking page**
+<img width="782" height="398" alt="image" src="https://github.com/user-attachments/assets/810e9f4e-cc67-4f50-9caa-afd4a889436a" /> | <img width="225" height="240" alt="image" src="https://github.com/user-attachments/assets/4372499e-d109-4ece-b485-f4822d1b3bbe" />
+
+
+
+---
+
+- **Notification**
+<img width="752" height="287" alt="image" src="https://github.com/user-attachments/assets/1374c6a1-04bf-40a4-ad71-c001b1531dc9" />
+
+
+
+
 
 ## 💬 **Chatbot Integration (AI Support)**
 
@@ -102,17 +139,6 @@ This chatbot enhances **user interaction** by providing **real-time assistance**
 - **VS Code** – Source code editor  
 
 ---
-
-
-
-
-
-
-
-
-
-
-
 
 
 
